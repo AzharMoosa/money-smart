@@ -1,6 +1,9 @@
 import express from "express";
 import colors from "colors";
 import usersRoute from "./routes/users.js";
+import connectDB from "./config/db.js";
+
+connectDB();
 
 const app = express();
 
