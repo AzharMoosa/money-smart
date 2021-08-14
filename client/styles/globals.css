@@ -1,16 +1,242 @@
-html,
-body {
-  padding: 0;
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+
+:root {
+  --primary-bg: #f0f5f9;
+  --secondary-bg: #c9d6df;
+  --dark: #52616b;
+  --black: #1e2022;
+  --pink: #ff6384;
+  --orange: #ff9f40;
+  --yellow: #ffcd56;
+  --green: #4bc0c0;
+  --blue: #36a2eb;
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+body {
+  font-family: "Lato", sans-serif;
+  background-color: var(--primary-bg);
 }
 
 a {
-  color: inherit;
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+.highlight-pink {
+  color: var(--pink);
+}
+
+.highlight-green {
+  color: var(--green);
+}
+
+.login-screen {
+  background-color: var(--secondary-bg);
+  height: 100vh;
+}
+
+.login-container {
+  display: flex;
+  width: 90%;
+  padding: 4rem 0;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  color: var(--dark);
+}
+
+.logo h2 {
+  font-size: 48px;
+  font-weight: bold;
+  margin-left: 1.5rem;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.logo-container p {
+  margin-top: 2rem;
+  font-size: 70px;
+  color: var(--dark);
+}
+
+.login-box {
+  width: 594px;
+  height: 815px;
+  background-color: var(--primary-bg);
+  border-radius: 22px;
+  color: var(--dark);
+  position: relative;
+}
+
+.login-box h1 {
+  font-size: 50px;
+  margin: 3rem 0 5rem 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.login-form {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-input {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+  font-size: 14px;
+}
+
+.auth-input input {
+  background-color: transparent;
+  color: var(--dark);
+  outline: none;
+  outline-style: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid var(--dark) 1px;
+  padding: 3px;
+  margin-top: 0.8rem;
+}
+
+.login-form .auth-input {
+  margin-bottom: 3rem;
+}
+
+.btn-large,
+.btn-large-dark {
+  width: 530px;
+  height: 68px;
+  background-color: var(--secondary-bg);
+  border: none;
+  outline: none;
+  border-radius: 9px;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "Lato", sans-serif;
+  cursor: pointer;
+  transition: all ease-in 0.3s;
+}
+
+.btn-large:hover {
+  background-color: #cfdce6;
+}
+
+.btn-large-dark:hover {
+  background-color: rgb(98, 116, 128);
+}
+
+.btn-large-dark {
+  background-color: var(--dark);
+  color: var(--primary-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-large-dark span {
+  margin-left: 1rem;
+}
+
+.login-form .btn-large-dark {
+  margin-top: 2rem;
+}
+
+.login-box-footer {
+  background-color: var(--dark);
+  color: var(--primary-bg);
+  font-size: 18px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0;
+  width: 594px;
+  height: 57px;
+  border-radius: 0 0 22px 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
