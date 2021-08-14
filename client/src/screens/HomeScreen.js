@@ -1,10 +1,11 @@
 import React from "react";
+import Layout from "../components/layout/Layout";
 
 const HomeScreen = () => {
   return (
-    <div>
-      <h2>sdok</h2>
-    </div>
+    <Layout>
+      <h2>main</h2>
+    </Layout>
   );
 };
 
