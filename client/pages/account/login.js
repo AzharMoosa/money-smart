@@ -3,13 +3,32 @@ import Logo from "../../components/Logo";
 import { FaGoogle } from "react-icons/fa";
 import { useState } from "react";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../store/actions/userActions";
+import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
+
+  useEffect(() => {
+    error && toast.error(error);
+    if (userInfo) {
+      router.push("/");
+    }
+  }, [userInfo]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(login(email, password));
   };
 
   return (
@@ -30,6 +49,7 @@ export default function LoginPage() {
         </div>
 
         <div className="login-box">
+          {error && <ToastContainer />}
           <h1>Log In</h1>
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="auth-input">

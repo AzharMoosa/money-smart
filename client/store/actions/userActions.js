@@ -10,7 +10,7 @@ import {
   USER_DETAILS_FAIL,
   USER_DETAILS_RESET,
 } from "../constants/userConstants";
-
+import { NEXT_URL } from "../../config/index";
 import axios from "axios";
 
 export const login = (email, password) => async (dispatch) => {
@@ -26,7 +26,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "/api/users/login",
+      `${NEXT_URL}/api/login`,
       { email, password },
       config
     );
