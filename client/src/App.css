@@ -339,6 +339,7 @@ a {
   align-items: center;
   color: var(--dark);
   padding: 0 1rem 0.6rem 0;
+  cursor: pointer;
 }
 
 .sign-out-btn h2 {

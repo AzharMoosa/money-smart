@@ -7,8 +7,16 @@ import TransactionsIcon from "../../img/transactions_icon.png";
 import ReceiptsIcon from "../../img/receipts_icon.png";
 import SettingsIcon from "../../img/settings_icon.png";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../actions/userActions";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
   return (
     <div className="sidebar">
       <Logo width={64} height={41} textSize={30} />
@@ -56,7 +64,7 @@ const Sidebar = () => {
         </Link>
       </div>
 
-      <div className="sign-out-btn">
+      <div className="sign-out-btn" onClick={logoutHandler}>
         <h2>Sign Out</h2>
         <FaSignOutAlt />
       </div>
