@@ -6,8 +6,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/userActions";
 import { useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Message from "../components/error/Message";
 
 const LoginScreen = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -15,14 +14,13 @@ const LoginScreen = ({ history }) => {
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
+  const { error, userInfo } = userLogin;
 
   useEffect(() => {
-    error && toast.error(error);
     if (userInfo) {
       history.push("/");
     }
-  }, [history, error, userInfo]);
+  }, [history, userInfo]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,7 +39,6 @@ const LoginScreen = ({ history }) => {
         </div>
 
         <div className="login-box">
-          {error && <ToastContainer />}
           <h1>Log In</h1>
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="auth-input">
@@ -70,6 +67,8 @@ const LoginScreen = ({ history }) => {
               <span>Log In With Google</span>
             </button>
           </form>
+
+          {error && <Message error={error} />}
 
           <div className="login-box-footer">
             <p>

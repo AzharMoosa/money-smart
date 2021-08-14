@@ -1,18 +1,37 @@
 import Logo from "../components/Logo";
 import { FaGoogle } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PasswordStrengthBar from "react-password-strength-bar";
 import { Link } from "react-router-dom";
+import { register } from "../actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
+import Message from "../components/error/Message";
 
-const RegisterScreen = () => {
+const RegisterScreen = ({ history }) => {
+  const dispatch = useDispatch();
+  const [message, setMessage] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const userRegister = useSelector((state) => state.userRegister);
+  const { error, userInfo } = userRegister;
+
+  useEffect(() => {
+    if (userInfo) {
+      history.push("/");
+    }
+  }, [history, userInfo]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      setMessage("Passwords Do Not Match");
+    } else {
+      dispatch(register(firstName, lastName, email, password));
+    }
   };
 
   return (
@@ -26,6 +45,9 @@ const RegisterScreen = () => {
           </p>
         </div>
 
+        {error && <Message error={error} />}
+        {message && <Message error={message} />}
+
         <div className="signup-box">
           <h1>Sign Up</h1>
           <form className="signup-form" onSubmit={handleSubmit}>
@@ -36,6 +58,7 @@ const RegisterScreen = () => {
                   type="firstName"
                   id="firstName"
                   value={firstName}
+                  required
                   onChange={(e) => setFirstName(e.target.value)}
                 />
               </div>
@@ -45,6 +68,7 @@ const RegisterScreen = () => {
                   type="lastName"
                   id="lastName"
                   value={lastName}
+                  required
                   onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
@@ -55,6 +79,7 @@ const RegisterScreen = () => {
                 type="email"
                 id="email"
                 value={email}
+                required
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -64,6 +89,7 @@ const RegisterScreen = () => {
                 type="password"
                 id="password"
                 value={password}
+                required
                 onChange={(e) => setPassword(e.target.value)}
               />
               <PasswordStrengthBar
@@ -83,6 +109,7 @@ const RegisterScreen = () => {
                 type="password"
                 id="confirmPassword"
                 value={confirmPassword}
+                required
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>

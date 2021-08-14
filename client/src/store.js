@@ -12,7 +12,10 @@ const usersInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
 
-const initialState = { userLogin: { userInfo: usersInfoFromStorage } };
+const initialState = {
+  userLogin: { userInfo: usersInfoFromStorage },
+  userRegister: { userInfo: usersInfoFromStorage },
+};
 const middleware = [thunk];
 
 const store = createStore(
