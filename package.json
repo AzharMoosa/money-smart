@@ -25,6 +25,7 @@
     "mongoose": "^5.13.7",
     "nodemon": "^2.0.12",
     "react-icons": "^4.2.0",
+    "react-password-strength-bar": "^0.3.5",
     "react-toastify": "^7.0.4"
   }
 }
