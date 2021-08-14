@@ -295,6 +295,10 @@ a {
   position: relative;
 }
 
+.main-container {
+  width: 80%;
+}
+
 .sidebar-items {
   display: flex;
   flex-direction: column;
@@ -348,5 +352,88 @@ a {
   text-transform: uppercase;
 }
 
-.main-container {
+.home-container {
+  width: 95%;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 60px;
+  font-weight: bold;
+  color: var(--black);
+  text-transform: uppercase;
+}
+
+.user-icon h3 {
+  font-size: 25px;
+  color: var(--black);
+  text-transform: uppercase;
+}
+
+.monthly-spending-overview {
+  width: 936px;
+  height: 418px;
+  background-color: var(--secondary-bg);
+  border-radius: 22px;
+  padding: 1rem;
+  color: var(--primary-bg);
+}
+
+.savings-overview {
+  width: 936px;
+  height: 393px;
+  background-color: var(--secondary-bg);
+  border-radius: 22px;
+  padding: 1rem 4rem;
+  margin-top: 3rem;
+  color: var(--primary-bg);
+}
+
+.highest-expense-overview {
+  width: 483px;
+  height: 858px;
+  background-color: var(--secondary-bg);
+  border-radius: 22px;
+  padding: 1rem;
+  margin-left: 3rem;
+  color: var(--primary-bg);
+}
+
+.home-data-overview {
+  display: flex;
+  margin-top: 3rem;
+}
+
+.monthly-spending-overview h3,
+.savings-overview h3,
+.highest-expense-overview h3 {
+  font-size: 35px;
+  font-weight: lighter;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.savings-cards {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 1.4rem;
+}
+
+.savings-card {
+  width: 221px;
+  height: 272.59px;
+  background-color: var(--dark);
+  color: var(--secondary-bg);
+  border-radius: 22px;
+  padding: 1rem 0;
 }
