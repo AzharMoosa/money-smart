@@ -104,6 +104,26 @@ a {
   color: var(--green);
 }
 
+.progress-bar {
+  position: relative;
+  height: 38px;
+  width: 1376px;
+  border-radius: 10px;
+  background-color: var(--dark);
+  border: 1px solid var(--dark);
+}
+
+.filler {
+  background-color: var(--primary-bg);
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.2s ease-in;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 0.5rem;
+}
+
 .error-message {
   background-color: var(--pink);
   width: 60%;
@@ -215,6 +235,18 @@ a {
   margin-bottom: 2rem;
 }
 
+.btn-small-dark {
+  width: 100px;
+  height: 32px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all ease-in 0.3s;
+  border-radius: 23px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
 .btn-large,
 .btn-large-dark {
   width: 530px;
@@ -234,11 +266,13 @@ a {
   background-color: #cfdce6;
 }
 
-.btn-large-dark:hover {
+.btn-large-dark:hover,
+.btn-small-dark:hover {
   background-color: rgb(98, 116, 128);
 }
 
-.btn-large-dark {
+.btn-large-dark,
+.btn-small-dark {
   background-color: var(--dark);
   color: var(--primary-bg);
   display: flex;
@@ -352,9 +386,10 @@ a {
   text-transform: uppercase;
 }
 
-.home-container {
+.home-container,
+.savings-screen-container {
   width: 95%;
-  margin: 2rem auto;
+  margin: 1rem auto;
   display: flex;
   flex-direction: column;
 }
@@ -436,4 +471,91 @@ a {
   color: var(--secondary-bg);
   border-radius: 22px;
   padding: 1rem 0;
+}
+
+.savings-nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0 1.5rem 0;
+  align-items: center;
+}
+
+.savings-nav input {
+  width: 580px;
+  height: 32px;
+  background-color: var(--secondary-bg);
+  border: none;
+  outline: none;
+  padding: 0 1rem;
+  border-radius: 23px;
+  font-size: 15px;
+  color: var(--dark);
+}
+
+.filter-icon {
+  display: flex;
+  align-items: center;
+  color: var(--dark);
+  cursor: pointer;
+}
+
+.filter-icon h3 {
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.savings-progress {
+  width: 1446px;
+  height: 163px;
+  background-color: var(--secondary-bg);
+  border-radius: 23px;
+  padding: 0.6rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  margin: 1.3rem 0.3rem;
+}
+
+.savings-progress-title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.savings-progress-title h4 {
+  font-size: 40px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--dark);
+}
+
+.savings-progress-title h3 {
+  font-size: 44px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--dark);
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--black);
+  margin-top: 0.5rem;
+}
+
+.pagination h3 {
+  cursor: pointer;
+}
+
+.pages {
+  display: flex;
+  align-items: center;
+}
+
+.pages h4 {
+  cursor: pointer;
+  margin-right: 1rem;
 }

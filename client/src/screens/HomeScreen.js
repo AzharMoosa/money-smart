@@ -9,6 +9,7 @@ const HomeScreen = () => {
           <h1 className="title">Dashboard</h1>
           <div className="user-icon">
             <h3>John Doe</h3>
+            <div className="user-img"></div>
           </div>
         </div>
 
