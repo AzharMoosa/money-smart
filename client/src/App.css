@@ -92,6 +92,7 @@ body {
   background-color: var(--primary-bg);
 }
 
+.link,
 a {
   text-decoration: none;
 }
@@ -115,6 +116,7 @@ a {
 
 .filler {
   background-color: var(--primary-bg);
+  color: var(--black);
   height: 100%;
   border-radius: inherit;
   transition: width 0.2s ease-in;
