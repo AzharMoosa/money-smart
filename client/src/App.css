@@ -402,7 +402,8 @@ a {
 
 .home-container,
 .savings-screen-container,
-.transactions-screen-container {
+.transactions-screen-container,
+.receipts-screen-container {
   width: 95%;
   margin: 1rem auto;
   display: flex;
@@ -575,7 +576,8 @@ a {
   margin-right: 1rem;
 }
 
-.transactions-dashboard {
+.transactions-dashboard,
+.receipts-dashboard {
   display: flex;
   margin-top: 2rem;
 }
@@ -597,7 +599,7 @@ a {
 .recent-transactions-list {
   display: flex;
   flex-direction: column;
-  margin-top: 3rem;
+  margin-top: 2rem;
   width: 100%;
 }
 
@@ -636,4 +638,21 @@ a {
   color: var(--primary-bg) !important;
   font-size: 25px;
   text-align: right;
+}
+
+.receipt-upload {
+  background-color: var(--secondary-bg);
+  height: 905px;
+  width: 509px;
+  border-radius: 22px;
+  padding: 1rem;
+  margin-left: 3rem;
+  color: var(--primary-bg);
+}
+
+.receipt-upload h3 {
+  font-size: 35px;
+  font-weight: lighter;
+  text-align: center;
+  text-transform: uppercase;
 }
