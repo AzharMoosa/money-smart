@@ -406,14 +406,16 @@ a {
 .savings-screen-container,
 .transactions-screen-container,
 .receipts-screen-container,
-.settings-screen-container {
+.settings-screen-container,
+.savings-info-container {
   width: 95%;
   margin: 1rem auto;
   display: flex;
   flex-direction: column;
 }
 
-.home-title {
+.home-title,
+.savings-info-title {
   width: 100%;
   display: flex;
   align-items: center;
@@ -741,4 +743,72 @@ a {
   font-size: 20px;
   font-weight: lighter;
   color: var(--dark);
+}
+
+.savings-info-container {
+  margin-top: 2rem;
+}
+
+.savings-info-nav {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.savings-info-nav h4 {
+  margin: 0 1rem;
+  cursor: pointer;
+  color: var(--black);
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.savings-info-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.savings-info-progress,
+.savings-info-history {
+  width: 279px;
+  height: 382px;
+  background-color: var(--secondary-bg);
+  margin: 1.5rem 0 1.5rem 1rem;
+  border-radius: 22px;
+}
+
+.savings-info-payments,
+.savings-info-info {
+  width: 1127px;
+  height: 382px;
+  background-color: var(--secondary-bg);
+  margin: 1.5rem 0;
+  border-radius: 22px;
+}
+
+.savings-info-progress,
+.savings-info-payments,
+.savings-info-history,
+.savings-info-info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 0.6rem 1rem;
+}
+
+.savings-info-payments h3,
+.savings-info-info h3 {
+  font-size: 39px;
+  color: var(--dark);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.savings-info-history h3 {
+  font-size: 30px;
+  color: var(--dark);
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
 }
