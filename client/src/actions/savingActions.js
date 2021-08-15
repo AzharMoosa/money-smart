@@ -31,7 +31,9 @@ export const getSavings = () => async (dispatch, getState) => {
     } = getState();
 
     const config = {
-      Authorization: `Bearer ${userInfo.token}`,
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
     };
 
     const { data } = await axios.get(`/api/savings`, config);
@@ -62,7 +64,9 @@ export const getSaving = (id) => async (dispatch, getState) => {
     } = getState();
 
     const config = {
-      Authorization: `Bearer ${userInfo.token}`,
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
     };
 
     const { data } = await axios.get(`/api/savings/${id}`, config);
@@ -97,8 +101,8 @@ export const createSaving =
       const config = {
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
         },
-        Authorization: `Bearer ${userInfo.token}`,
       };
 
       const { data } = await axios.post(
@@ -135,8 +139,8 @@ export const updateSaving = (saving) => async (dispatch, getState) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
       },
-      Authorization: `Bearer ${userInfo.token}`,
     };
 
     const { data } = await axios.put(
@@ -174,8 +178,8 @@ export const addAmountToSaving =
       const config = {
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
         },
-        Authorization: `Bearer ${userInfo.token}`,
       };
 
       const { data } = await axios.put(
@@ -210,7 +214,9 @@ export const deleteSaving = (id) => async (dispatch, getState) => {
     } = getState();
 
     const config = {
-      Authorization: `Bearer ${userInfo.token}`,
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
     };
 
     const { data } = await axios.delete(`/api/savings${id}`, config);

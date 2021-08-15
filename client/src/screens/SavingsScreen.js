@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Layout from "../components/layout/Layout";
 import { FaSortAmountUp } from "react-icons/fa";
 import SavingsProgressCard from "../components/savings/SavingsProgressCard";
 import { Link } from "react-router-dom";
+import { getSavings } from "../actions/savingActions";
+import Message from "../components/error/Message";
+
 const SavingsScreen = () => {
+  const dispatch = useDispatch();
+
+  const userSavingsList = useSelector((state) => state.userSavingsList);
+  const { savings, error, loading } = userSavingsList;
+
+  const computePercentage = (amountRequired, amountSaved) => {
+    return Math.ceil((amountSaved / amountRequired) * 100);
+  };
+
+  useEffect(() => {
+    dispatch(getSavings());
+  }, [dispatch]);
+
   return (
     <Layout>
       <div className="savings-screen-container">
@@ -18,21 +35,24 @@ const SavingsScreen = () => {
             <h3>Filter</h3>
           </div>
         </div>
-        <Link className="link" to={`/savings/${1}`}>
-          <SavingsProgressCard title={"House"} amount={50000} percentage={60} />
-        </Link>
 
-        <Link className="link" to={`/savings/${2}`}>
-          <SavingsProgressCard title={"Car"} amount={20000} percentage={60} />
-        </Link>
+        {loading && <p>Loading...</p>}
+        {error && <Message error={error} />}
 
-        <Link className="link" to={`/savings/${3}`}>
-          <SavingsProgressCard title={"Shoes"} amount={100} percentage={60} />
-        </Link>
-
-        <Link className="link" to={`/savings/${4}`}>
-          <SavingsProgressCard title={"Phone"} amount={800} percentage={60} />
-        </Link>
+        {!loading &&
+          savings.length > 0 &&
+          savings.map((saving) => (
+            <Link className="link" to={`/savings/${saving._id}`}>
+              <SavingsProgressCard
+                title={saving.name}
+                amount={saving.amountRequired}
+                percentage={computePercentage(
+                  saving.amountRequired,
+                  saving.amountSaved
+                )}
+              />
+            </Link>
+          ))}
 
         <div className="pagination">
           <h3>Previous</h3>
