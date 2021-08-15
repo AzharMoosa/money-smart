@@ -403,7 +403,8 @@ a {
 .home-container,
 .savings-screen-container,
 .transactions-screen-container,
-.receipts-screen-container {
+.receipts-screen-container,
+.settings-screen-container {
   width: 95%;
   margin: 1rem auto;
   display: flex;
@@ -577,12 +578,14 @@ a {
 }
 
 .transactions-dashboard,
-.receipts-dashboard {
+.receipts-dashboard,
+.settings-dashboard {
   display: flex;
   margin-top: 2rem;
 }
 
-.recent-transactions {
+.recent-transactions,
+.settings-items {
   width: 982px;
   height: 905px;
   background-color: var(--secondary-bg);
@@ -640,7 +643,8 @@ a {
   text-align: right;
 }
 
-.receipt-upload {
+.receipt-upload,
+.settings-user {
   background-color: var(--secondary-bg);
   height: 905px;
   width: 509px;
@@ -650,9 +654,89 @@ a {
   color: var(--primary-bg);
 }
 
-.receipt-upload h3 {
+.receipt-upload h3,
+.settings-user h3 {
   font-size: 35px;
   font-weight: lighter;
   text-align: center;
   text-transform: uppercase;
+}
+
+.settings-items {
+  flex-direction: column;
+}
+
+.settings-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--dark);
+  margin: 1rem 0;
+}
+
+.settings-button {
+  width: 875px;
+  height: 52px;
+  background-color: var(--primary-bg);
+  border-radius: 9px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.7rem;
+  cursor: pointer;
+  color: var(--dark);
+  margin: 2rem 0;
+  transition: all ease-in 0.3s;
+}
+
+.settings-button h3 {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.settings-button:hover {
+  background-color: #fafdff;
+}
+
+.settings-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.settings-user img {
+  margin: 3rem 0;
+  width: 379px;
+  height: 379px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.age,
+.salary,
+.retirement-age {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+}
+
+.age h3,
+.salary h3,
+.retirement-age h3,
+.bio h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--dark);
+}
+
+.age h4,
+.salary h4,
+.retirement-age h4 {
+  font-size: 20px;
+  font-weight: lighter;
+  color: var(--dark);
 }
