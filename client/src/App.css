@@ -247,6 +247,18 @@ a {
   font-weight: bold;
 }
 
+.btn-medium-dark {
+  width: 100px;
+  height: 32px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all ease-in 0.3s;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
 .btn-large,
 .btn-large-dark {
   width: 530px;
@@ -267,12 +279,14 @@ a {
 }
 
 .btn-large-dark:hover,
-.btn-small-dark:hover {
+.btn-small-dark:hover,
+.btn-medium-dark:hover {
   background-color: rgb(98, 116, 128);
 }
 
 .btn-large-dark,
-.btn-small-dark {
+.btn-small-dark,
+.btn-medium-dark {
   background-color: var(--dark);
   color: var(--primary-bg);
   display: flex;
@@ -387,7 +401,8 @@ a {
 }
 
 .home-container,
-.savings-screen-container {
+.savings-screen-container,
+.transactions-screen-container {
   width: 95%;
   margin: 1rem auto;
   display: flex;
@@ -558,4 +573,67 @@ a {
 .pages h4 {
   cursor: pointer;
   margin-right: 1rem;
+}
+
+.transactions-dashboard {
+  display: flex;
+  margin-top: 2rem;
+}
+
+.recent-transactions {
+  width: 982px;
+  height: 905px;
+  background-color: var(--secondary-bg);
+  border-radius: 22px;
+  padding: 1.5rem 3rem;
+}
+
+.recent-transactions h2 {
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--dark);
+}
+
+.recent-transactions-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  width: 100%;
+}
+
+.recent-transactions-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.transactions-item {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+  color: var(--dark);
+  margin: 0.5rem 0;
+}
+
+.transaction-date {
+  font-size: 20px;
+}
+
+.transaction-name {
+  font-weight: lighter;
+  font-size: 20px;
+}
+
+.transaction-type {
+  font-weight: lighter;
+  font-size: 20px;
+  margin-left: 2rem;
+  text-align: center;
+}
+
+.transaction-price {
+  font-weight: bold;
+  color: var(--primary-bg) !important;
+  font-size: 25px;
+  text-align: right;
 }

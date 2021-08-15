@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "../components/layout/Layout";
+import HighestExpenses from "../components/transactions/HighestExpenses";
 
 const HomeScreen = () => {
   return (
@@ -33,9 +34,7 @@ const HomeScreen = () => {
               </div>
             </div>
           </div>
-          <div className="highest-expense-overview">
-            <h3>Highest Expenses</h3>
-          </div>
+          <HighestExpenses />
         </div>
       </div>
     </Layout>
