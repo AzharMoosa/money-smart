@@ -37,6 +37,20 @@ const createSavings = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc        Get Saving
+// @route       GET /api/savings/:id
+// @access      Private
+const getSaving = asyncHandler(async (req, res) => {
+  const saving = await Saving.findById(req.params.id);
+
+  if (saving) {
+    res.json(saving);
+  } else {
+    res.status(401);
+    throw new Error("Cannot Get Saving");
+  }
+});
+
 // @desc        Update Savings
 // @route       PUT /api/savings/:id
 // @access      Private
@@ -99,6 +113,7 @@ const deleteSaving = asyncHandler(async (req, res) => {
 
 export {
   getUsersSavings,
+  getSaving,
   createSavings,
   updateSavings,
   addAmount,
