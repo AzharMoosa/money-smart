@@ -17,10 +17,12 @@ const SavingSchema = mongoose.Schema({
   history: [
     {
       date: {
-        type: Date,
+        type: String,
+        required: true,
       },
       amount: {
         type: Number,
+        required: true,
       },
     },
   ],
@@ -29,7 +31,11 @@ const SavingSchema = mongoose.Schema({
     required: true,
   },
   deadline: {
-    type: Date,
+    type: String,
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
   },
 });
 
