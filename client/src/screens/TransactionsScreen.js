@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../components/layout/Layout";
 import HighestExpenses from "../components/transactions/HighestExpenses";
 import RecentTransactionItem from "../components/transactions/RecentTransactionItem";
+import { Link } from "react-router-dom";
 
 const TransactionsScreen = () => {
   return (
@@ -15,7 +16,9 @@ const TransactionsScreen = () => {
           <div className="recent-transactions">
             <div className="recent-transactions-title">
               <h2>Recent Transactions</h2>
-              <button className="btn-medium-dark">Add</button>
+              <Link to="/add-transaction">
+                <button className="btn-medium-dark">Add</button>
+              </Link>
             </div>
 
             <div className="recent-transactions-list">

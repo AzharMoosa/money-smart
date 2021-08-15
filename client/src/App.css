@@ -216,6 +216,40 @@ a {
   font-size: 14px;
 }
 
+.add-transaction-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: auto;
+  font-size: 24px;
+  color: var(--dark);
+}
+
+.add-transaction-input input {
+  background-color: transparent;
+  color: var(--dark);
+  outline: none;
+  outline-style: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid var(--dark) 1px;
+  padding: 3px;
+  margin-top: 0.8rem;
+}
+
+.add-transaction-input textarea {
+  background-color: var(--primary-bg);
+  border-radius: 12px;
+  border: none;
+  margin-top: 0.8rem;
+  width: 1386px;
+  height: 153px;
+  outline: none;
+  padding: 0.5rem 1rem;
+  color: var(--dark);
+}
+
 .auth-input input {
   background-color: transparent;
   color: var(--dark);
@@ -227,6 +261,10 @@ a {
   border-bottom: solid var(--dark) 1px;
   padding: 3px;
   margin-top: 0.8rem;
+}
+
+.add-transaction .add-transaction-input {
+  margin-bottom: 2rem;
 }
 
 .login-form .auth-input {
@@ -811,4 +849,32 @@ a {
   font-weight: bold;
   text-transform: uppercase;
   margin-top: 0.5rem;
+}
+
+.add-transaction {
+  width: 1488px;
+  height: 886px;
+  background-color: var(--secondary-bg);
+  border-radius: 22px;
+}
+
+.add-transaction {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-transaction-btn {
+  width: 308px;
+  height: 68px;
+  background-color: var(--primary-bg);
+  outline: none;
+  border: none;
+  border-radius: 9px;
+  font-size: 17px;
+  font-weight: bold;
+  font-family: "Lato", sans-serif;
+  text-transform: uppercase;
+  color: var(--black);
 }
