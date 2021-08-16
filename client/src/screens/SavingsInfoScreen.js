@@ -5,6 +5,7 @@ import { getSaving } from "../actions/savingActions";
 import Message from "../components/error/Message";
 import { Doughnut } from "react-chartjs-2";
 import Loading from "../components/loading/Loading";
+import StackedBar from "../components/charts/StackedBar";
 
 const SavingsInfoScreen = ({ match }) => {
   const dispatch = useDispatch();
@@ -12,40 +13,15 @@ const SavingsInfoScreen = ({ match }) => {
   const savingDetails = useSelector((state) => state.savingDetails);
   const { saving, loading, error } = savingDetails;
 
+  const TOTAL_PERCENTAGE = 100;
+
   useEffect(() => {
     dispatch(getSaving(match.params.id));
   }, [dispatch, match]);
 
-  const data = {
-    maintainAspectRatio: false,
-    responsive: false,
-    datasets: [
-      {
-        data: [60, 40],
-        backgroundColor: ["#4BC0C0", "#52616B"],
-        borderWidth: 0,
-      },
-    ],
+  const computePercentage = (amountRequired, amountSaved) => {
+    return Math.ceil((amountSaved / amountRequired) * TOTAL_PERCENTAGE);
   };
-
-  const plugins = [
-    {
-      beforeDraw: function (chart) {
-        var width = chart.width,
-          height = chart.height,
-          ctx = chart.ctx;
-        ctx.restore();
-        var fontSize = (height / 140).toFixed(2);
-        ctx.font = fontSize + "em Lato";
-        ctx.textBaseline = "top";
-        var text = "60%",
-          textX = Math.round((width - ctx.measureText(text).width) / 2),
-          textY = height / 2 - 6;
-        ctx.fillText(text, textX, textY);
-        ctx.save();
-      },
-    },
-  ];
 
   return (
     <Layout>
@@ -69,12 +45,54 @@ const SavingsInfoScreen = ({ match }) => {
                 <Doughnut
                   height={189}
                   width={189}
-                  data={data}
-                  plugins={plugins}
+                  plugins={[
+                    {
+                      beforeDraw: function (chart) {
+                        var width = chart.width,
+                          height = chart.height,
+                          ctx = chart.ctx;
+                        ctx.restore();
+                        var fontSize = (height / 140).toFixed(2);
+                        ctx.font = fontSize + "em Lato";
+                        ctx.textBaseline = "top";
+                        var text = `${computePercentage(
+                            saving.amountRequired,
+                            saving.amountSaved
+                          )}%`,
+                          textX = Math.round(
+                            (width - ctx.measureText(text).width) / 2
+                          ),
+                          textY = height / 2 - 6;
+                        ctx.fillText(text, textX, textY);
+                        ctx.save();
+                      },
+                    },
+                  ]}
                   options={{
                     tooltip: false,
                     responsive: false,
                     maintainAspectRatio: true,
+                  }}
+                  data={{
+                    maintainAspectRatio: false,
+                    responsive: false,
+                    datasets: [
+                      {
+                        data: [
+                          computePercentage(
+                            saving.amountRequired,
+                            saving.amountSaved
+                          ),
+                          TOTAL_PERCENTAGE -
+                            computePercentage(
+                              saving.amountRequired,
+                              saving.amountSaved
+                            ),
+                        ],
+                        backgroundColor: ["#4BC0C0", "#52616B"],
+                        borderWidth: 0,
+                      },
+                    ],
                   }}
                 />
                 <div className="savings-info-progress-saved">
@@ -92,11 +110,12 @@ const SavingsInfoScreen = ({ match }) => {
               </div>
               <div className="savings-info-payments">
                 <h3>Monthly Payments</h3>
+                <StackedBar saving={saving} />
               </div>
               <div className="savings-info-history">
                 <h3>History</h3>
                 <div className="savings-info-history-list">
-                  {saving.history.map((transaction) => (
+                  {saving.history.slice(5).map((transaction) => (
                     <div
                       key={transaction._id}
                       className="savings-info-history-item"
