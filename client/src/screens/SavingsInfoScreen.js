@@ -95,6 +95,14 @@ const SavingsInfoScreen = ({ match }) => {
               </div>
               <div className="savings-info-history">
                 <h3>History</h3>
+                <div className="savings-info-history-list">
+                  {saving.history.map((transaction) => (
+                    <div className="savings-info-history-item">
+                      <h4>{transaction.date}</h4>
+                      <h3>£ {transaction.amount}</h3>
+                    </div>
+                  ))}
+                </div>
               </div>
               <div className="savings-info-info">
                 <h3>Info</h3>
