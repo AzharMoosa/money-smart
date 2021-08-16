@@ -15,6 +15,14 @@ import {
   userSavingsListReducer,
 } from "./reducers/savingReducer";
 
+import {
+  transactionDetailsReducer,
+  transactionCreateReducer,
+  transactionDeleteReducer,
+  transactionUpdateReducer,
+  userTransactionsListReducer,
+} from "./reducers/transactionReducer";
+
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
@@ -25,6 +33,11 @@ const reducer = combineReducers({
   savingUpdate: savingUpdateReducer,
   savingAddAmount: savingAddAmountReducer,
   userSavingsList: userSavingsListReducer,
+  transactionDetails: transactionDetailsReducer,
+  transactionCreate: transactionCreateReducer,
+  transactionDelete: transactionDeleteReducer,
+  transactionUpdate: transactionUpdateReducer,
+  userTransactionsList: userTransactionsListReducer,
 });
 
 const usersInfoFromStorage = localStorage.getItem("userInfo")
