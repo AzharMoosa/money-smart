@@ -9,7 +9,7 @@ import moment from "moment";
 
 const AddTransactionScreen = ({ history }) => {
   const [transactionName, setTransactionName] = useState("");
-  const [transactionType, setTransactionType] = useState("");
+  const [transactionType, setTransactionType] = useState("Rent");
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState("");
   const [information, setInformation] = useState("");
@@ -67,13 +67,31 @@ const AddTransactionScreen = ({ history }) => {
             </div>
             <div className="add-transaction-input">
               <label htmlFor="transactionType">Transaction Type</label>
-              <input
+              <select
+                value={transactionType}
+                type="transactionType"
+                id="transactionType"
+                required
+                onChange={(e) => setTransactionType(e.target.value)}
+              >
+                <option selected="selected" value="Rent">
+                  Rent
+                </option>
+                <option value="Food">Food</option>
+                <option value="Going Out">Going Out</option>
+                <option value="Clothes/Shoes">Clothes</option>
+                <option value="Groceries">Groceries</option>
+                <option value="Bills">Bills</option>
+                <option value="Holiday">Holiday</option>
+                <option value="Other">Other</option>
+              </select>
+              {/* <input
                 type="transactionType"
                 id="transactionType"
                 value={transactionType}
                 required
                 onChange={(e) => setTransactionType(e.target.value)}
-              />
+              /> */}
             </div>
 
             <div className="add-transaction-input">

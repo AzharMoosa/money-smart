@@ -238,6 +238,30 @@ a {
   margin-top: 0.8rem;
 }
 
+.add-transaction-input select {
+  background-color: transparent;
+  color: var(--dark);
+  outline: none;
+  outline-style: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid var(--dark) 1px;
+  padding: 3px;
+  margin-top: 0.8rem;
+}
+
+select:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+option {
+  background-color: var(--secondary-bg);
+  color: var(--dark);
+  font-size: 15px;
+}
+
 .add-transaction-input textarea {
   background-color: var(--primary-bg);
   border-radius: 12px;
