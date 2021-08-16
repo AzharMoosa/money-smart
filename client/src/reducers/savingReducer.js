@@ -1,6 +1,7 @@
 import {
   SAVING_ADD_AMOUNT_FAIL,
   SAVING_ADD_AMOUNT_REQUEST,
+  SAVING_ADD_AMOUNT_RESET,
   SAVING_ADD_AMOUNT_SUCCESS,
   SAVING_CREATE_FAIL,
   SAVING_CREATE_REQUEST,
@@ -8,6 +9,7 @@ import {
   SAVING_CREATE_SUCCESS,
   SAVING_DELETE_FAIL,
   SAVING_DELETE_REQUEST,
+  SAVING_DELETE_RESET,
   SAVING_DELETE_SUCCESS,
   SAVING_GET_FAIL,
   SAVING_GET_REQUEST,
@@ -129,6 +131,8 @@ export const savingDeleteReducer = (state = { saving: {} }, action) => {
         loading: false,
         error: action.payload,
       };
+    case SAVING_DELETE_RESET:
+      return {};
     default:
       return state;
   }
@@ -151,6 +155,8 @@ export const savingAddAmountReducer = (state = { saving: {} }, action) => {
         loading: false,
         error: action.payload,
       };
+    case SAVING_ADD_AMOUNT_RESET:
+      return {};
     default:
       return state;
   }

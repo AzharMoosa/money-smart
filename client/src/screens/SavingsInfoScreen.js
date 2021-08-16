@@ -9,6 +9,7 @@ import StackedBar from "../components/charts/StackedBar";
 import { Link } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import { SAVING_DELETE_RESET } from "../constants/savingConstants";
 
 const SavingsInfoScreen = ({ match, history }) => {
   const dispatch = useDispatch();
@@ -16,11 +17,25 @@ const SavingsInfoScreen = ({ match, history }) => {
   const savingDetails = useSelector((state) => state.savingDetails);
   const { saving, loading, error } = savingDetails;
 
+  const savingDelete = useSelector((state) => state.savingDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = savingDelete;
+
   const TOTAL_PERCENTAGE = 100;
 
   useEffect(() => {
-    dispatch(getSaving(match.params.id));
-  }, [dispatch, match]);
+    if (successDelete) {
+      dispatch({
+        type: SAVING_DELETE_RESET,
+      });
+      history.push("/savings");
+    } else {
+      dispatch(getSaving(match.params.id));
+    }
+  }, [history, successDelete, dispatch, match]);
 
   const computePercentage = (amountRequired, amountSaved) => {
     return Math.floor((amountSaved / amountRequired) * TOTAL_PERCENTAGE);
@@ -35,8 +50,6 @@ const SavingsInfoScreen = ({ match, history }) => {
           label: "Yes",
           onClick: () => {
             dispatch(deleteSaving(id));
-            history.push("/savings");
-            history.go();
           },
         },
         {
@@ -50,6 +63,8 @@ const SavingsInfoScreen = ({ match, history }) => {
   return (
     <Layout>
       {loading && <Loading />}
+      {loadingDelete && <Loading />}
+      {errorDelete && <Message error={errorDelete} />}
       <div className="savings-info-container">
         {error && <Message error={error} />}
         {!loading && saving != null && (

@@ -6,6 +6,7 @@ import HomeScreen from "./screens/HomeScreen";
 import SavingsScreen from "./screens/SavingsScreen";
 import SavingsInfoScreen from "./screens/SavingsInfoScreen";
 import SavingAddAmountScreen from "./screens/SavingAddAmountScreen";
+import SavingEditInfoScreen from "./screens/SavingEditInfoScreen";
 import TransactionsScreen from "./screens/TransactionsScreen";
 import AddTransactionScreen from "./screens/AddTransactionScreen";
 import ReceiptsScreen from "./screens/ReceiptsScreen";
@@ -23,6 +24,11 @@ function App() {
           exact
           path="/savings/add/:id"
           component={SavingAddAmountScreen}
+        />
+        <PrivateRoute
+          exact
+          path="/savings/edit/:id"
+          component={SavingEditInfoScreen}
         />
         <PrivateRoute
           exact
