@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../components/layout/Layout";
 import HighestExpenses from "../components/transactions/HighestExpenses";
 import RecentTransactionItem from "../components/transactions/RecentTransactionItem";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import Message from "../components/error/Message";
+import Loading from "../components/loading/Loading";
+import { getTransactions } from "../actions/transactionActions";
 
 const TransactionsScreen = () => {
+  const dispatch = useDispatch();
+
+  const userTransactionsList = useSelector(
+    (state) => state.userTransactionsList
+  );
+
+  const { loading, transactions, error } = userTransactionsList;
+
+  useEffect(() => {
+    dispatch(getTransactions());
+  }, [dispatch]);
+
   return (
     <Layout>
+      {loading && <Loading />}
+      {error && <Message error={error} />}
       <div className="transactions-screen-container">
         <div className="transactions-screen-title">
           <h1 className="title">Transactions</h1>
@@ -22,30 +40,15 @@ const TransactionsScreen = () => {
             </div>
 
             <div className="recent-transactions-list">
-              <RecentTransactionItem
-                date={new Date()}
-                name={"Mc Donalds"}
-                type={"Food"}
-                price={10.2}
-              />
-              <RecentTransactionItem
-                date={new Date()}
-                name={"Starbucks"}
-                type={"Food"}
-                price={5.7}
-              />
-              <RecentTransactionItem
-                date={new Date()}
-                name={"Rent"}
-                type={"Home"}
-                price={1800}
-              />
-              <RecentTransactionItem
-                date={new Date(2021, 7, 14, 12)}
-                name={"Rent"}
-                type={"Home"}
-                price={1800}
-              />
+              {transactions.map((transaction) => (
+                <RecentTransactionItem
+                  key={transaction._id}
+                  date={transaction.date}
+                  name={transaction.name}
+                  type={transaction.type}
+                  price={transaction.amount}
+                />
+              ))}
             </div>
           </div>
           <HighestExpenses height={905} />

@@ -3,19 +3,24 @@ import Moment from "react-moment";
 import "moment-timezone";
 
 const RecentTransactionItem = ({ date, name, type, price }) => {
-  const isToday = (dateGiven) => {
+  const dateSplit = date.split("/");
+  const dateString = new Date(
+    `${dateSplit[2]}-${dateSplit[1]}-${dateSplit[0]}`
+  );
+
+  const isToday = () => {
     const today = new Date();
     return (
-      dateGiven.getDate() === today.getDate() &&
-      dateGiven.getMonth() === today.getMonth() &&
-      dateGiven.getFullYear() === today.getFullYear()
+      dateString.getDate() === today.getDate() &&
+      dateString.getMonth() === today.getMonth() &&
+      dateString.getFullYear() === today.getFullYear()
     );
   };
 
   return (
     <div className="transactions-item">
       <h3 className="transaction-date">
-        {isToday(date) ? "Today" : <Moment format="DD/MM">{date}</Moment>}
+        {isToday() ? "Today" : <Moment format="DD/MM">{dateString}</Moment>}
       </h3>
       <h3 className="transaction-name">{name}</h3>
       <h3 className="transaction-type">{type}</h3>

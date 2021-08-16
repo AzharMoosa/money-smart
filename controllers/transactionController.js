@@ -1,6 +1,11 @@
 import asyncHandler from "express-async-handler";
 import Transaction from "../models/Transaction.js";
 
+const convertDate = (dateGiven) => {
+  const date = dateGiven.split("/");
+  return new Date(`${date[2]}-${date[1]}-${date[0]}`);
+};
+
 // @desc        Get Users Transactions
 // @route       GET /api/transactions
 // @access      Private
@@ -8,6 +13,9 @@ const getUsersTransactions = asyncHandler(async (req, res) => {
   const transactions = await Transaction.find({ user: req.user._id });
 
   if (transactions) {
+    transactions.sort(function (a, b) {
+      return convertDate(b.date) - convertDate(a.date);
+    });
     res.json(transactions);
   } else {
     res.status(401);
