@@ -183,7 +183,7 @@ export const addAmountToSaving =
       };
 
       const { data } = await axios.put(
-        `/api/savings/${id}`,
+        `/api/savings/add/${id}`,
         { amount, date },
         config
       );

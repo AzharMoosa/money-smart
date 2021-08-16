@@ -23,7 +23,7 @@ const SavingsInfoScreen = ({ match, history }) => {
   }, [dispatch, match]);
 
   const computePercentage = (amountRequired, amountSaved) => {
-    return Math.ceil((amountSaved / amountRequired) * TOTAL_PERCENTAGE);
+    return Math.floor((amountSaved / amountRequired) * TOTAL_PERCENTAGE);
   };
 
   const deleteSavingHandler = (name, id) => {
@@ -36,6 +36,7 @@ const SavingsInfoScreen = ({ match, history }) => {
           onClick: () => {
             dispatch(deleteSaving(id));
             history.push("/savings");
+            history.go();
           },
         },
         {
@@ -146,7 +147,7 @@ const SavingsInfoScreen = ({ match, history }) => {
               <div className="savings-info-history">
                 <h3>History</h3>
                 <div className="savings-info-history-list">
-                  {saving.history.slice(5).map((transaction) => (
+                  {saving.history.slice(0, 5).map((transaction) => (
                     <div
                       key={transaction._id}
                       className="savings-info-history-item"

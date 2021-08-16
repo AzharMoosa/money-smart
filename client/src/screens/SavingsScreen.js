@@ -15,7 +15,7 @@ const SavingsScreen = () => {
   const { savings, error, loading } = userSavingsList;
 
   const computePercentage = (amountRequired, amountSaved) => {
-    return Math.ceil((amountSaved / amountRequired) * 100);
+    return Math.floor((amountSaved / amountRequired) * 100);
   };
 
   useEffect(() => {
