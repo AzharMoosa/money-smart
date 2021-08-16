@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
 import Layout from "../components/layout/Layout";
 import { useDispatch, useSelector } from "react-redux";
-import { getSaving } from "../actions/savingActions";
+import { deleteSaving, getSaving } from "../actions/savingActions";
 import Message from "../components/error/Message";
 import { Doughnut } from "react-chartjs-2";
 import Loading from "../components/loading/Loading";
 import StackedBar from "../components/charts/StackedBar";
+import { Link } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
-const SavingsInfoScreen = ({ match }) => {
+const SavingsInfoScreen = ({ match, history }) => {
   const dispatch = useDispatch();
 
   const savingDetails = useSelector((state) => state.savingDetails);
@@ -23,6 +26,26 @@ const SavingsInfoScreen = ({ match }) => {
     return Math.ceil((amountSaved / amountRequired) * TOTAL_PERCENTAGE);
   };
 
+  const deleteSavingHandler = (name, id) => {
+    confirmAlert({
+      title: `Delete ${name}`,
+      message: "Are you sure?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            dispatch(deleteSaving(id));
+            history.push("/savings");
+          },
+        },
+        {
+          label: "No",
+          onClick: () => {},
+        },
+      ],
+    });
+  };
+
   return (
     <Layout>
       {loading && <Loading />}
@@ -35,10 +58,18 @@ const SavingsInfoScreen = ({ match }) => {
               <h1 className="title">£ {saving.amountRequired}</h1>
             </div>
             <div className="savings-info-nav">
-              <h4>View Info</h4>
-              <h4>Add Amount</h4>
-              <h4>Edit Info</h4>
-              <h4>Delete Info</h4>
+              <Link to={`/savings/${saving._id}`}>
+                <h4>View Info</h4>
+              </Link>
+              <Link to={`/savings/add/${saving._id}`}>
+                <h4>Add Amount</h4>
+              </Link>
+              <Link to={`/savings/edit/${saving._id}`}>
+                <h4>Edit Info</h4>
+              </Link>
+              <h4 onClick={() => deleteSavingHandler(saving.name, saving._id)}>
+                Delete Info
+              </h4>
             </div>
             <div className="savings-info-layout">
               <div className="savings-info-progress">

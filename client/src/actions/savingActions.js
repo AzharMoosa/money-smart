@@ -144,7 +144,7 @@ export const updateSaving = (saving) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `/api/savings${saving._id}`,
+      `/api/savings/${saving._id}`,
       saving,
       config
     );
@@ -183,7 +183,7 @@ export const addAmountToSaving =
       };
 
       const { data } = await axios.put(
-        `/api/savings${id}`,
+        `/api/savings/${id}`,
         { amount, date },
         config
       );
@@ -219,7 +219,7 @@ export const deleteSaving = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/savings${id}`, config);
+    const { data } = await axios.delete(`/api/savings/${id}`, config);
 
     dispatch({
       type: SAVING_DELETE_SUCCESS,
