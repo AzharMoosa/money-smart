@@ -97,7 +97,10 @@ const SavingsInfoScreen = ({ match }) => {
                 <h3>History</h3>
                 <div className="savings-info-history-list">
                   {saving.history.map((transaction) => (
-                    <div className="savings-info-history-item">
+                    <div
+                      key={transaction._id}
+                      className="savings-info-history-item"
+                    >
                       <h4>{transaction.date}</h4>
                       <h3>£ {transaction.amount}</h3>
                     </div>
@@ -106,6 +109,14 @@ const SavingsInfoScreen = ({ match }) => {
               </div>
               <div className="savings-info-info">
                 <h3>Info</h3>
+                <div className="savings-info-desc">
+                  <h3>Description</h3>
+                  <p>{saving.description}</p>
+                </div>
+                <div className="savings-info-deadline">
+                  <h3>Deadline</h3>
+                  <p>{saving.deadline}</p>
+                </div>
               </div>
             </div>
           </div>

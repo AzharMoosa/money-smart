@@ -937,3 +937,26 @@ a {
   font-size: 20px;
   font-weight: bold;
 }
+
+.savings-info-desc,
+.savings-info-deadline {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 0 1rem;
+  color: var(--dark);
+}
+
+.savings-info-desc h3,
+.savings-info-deadline h3 {
+  margin: 0.5rem 0 1rem 0;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: none !important;
+}
+
+.savings-info-desc p,
+.savings-info-deadline p {
+  font-size: 18px;
+  font-weight: lighter;
+}

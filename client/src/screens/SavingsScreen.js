@@ -43,7 +43,11 @@ const SavingsScreen = () => {
         {!loading &&
           savings.length > 0 &&
           savings.map((saving) => (
-            <Link className="link" to={`/savings/${saving._id}`}>
+            <Link
+              key={saving._id}
+              className="link"
+              to={`/savings/${saving._id}`}
+            >
               <SavingsProgressCard
                 title={saving.name}
                 amount={saving.amountRequired}
