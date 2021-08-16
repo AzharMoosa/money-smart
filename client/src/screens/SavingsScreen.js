@@ -25,20 +25,21 @@ const SavingsScreen = () => {
   return (
     <Layout>
       {loading && <Loading />}
+      {error && <Message error={error} />}
       <div className="savings-screen-container">
         <div className="savings-screen-title">
           <h1 className="title">Savings</h1>
         </div>
         <div className="savings-nav">
-          <button className="btn-small-dark">New</button>
+          <Link to="/savings/create">
+            <button className="btn-small-dark">New</button>
+          </Link>
           <input type="text" placeholder="Search.."></input>
           <div className="filter-icon">
             <FaSortAmountUp />
             <h3>Filter</h3>
           </div>
         </div>
-
-        {error && <Message error={error} />}
 
         {!loading &&
           savings.length > 0 &&

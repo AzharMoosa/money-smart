@@ -4,6 +4,7 @@ import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import HomeScreen from "./screens/HomeScreen";
 import SavingsScreen from "./screens/SavingsScreen";
+import SavingCreateScreen from "./screens/SavingCreateScreen";
 import SavingsInfoScreen from "./screens/SavingsInfoScreen";
 import SavingAddAmountScreen from "./screens/SavingAddAmountScreen";
 import SavingEditInfoScreen from "./screens/SavingEditInfoScreen";
@@ -19,6 +20,11 @@ function App() {
       <Switch>
         <PrivateRoute exact path="/" component={HomeScreen} />
         <PrivateRoute exact path="/savings" component={SavingsScreen} />
+        <PrivateRoute
+          exact
+          path="/savings/create"
+          component={SavingCreateScreen}
+        />
         <PrivateRoute exact path="/savings/:id" component={SavingsInfoScreen} />
         <PrivateRoute
           exact
