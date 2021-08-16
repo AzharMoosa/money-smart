@@ -1,18 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/layout/Layout";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../components/loading/Loading";
+import Message from "../components/error/Message";
+import { TRANSACTION_CREATE_RESET } from "../constants/transactionConstants";
+import { createTransaction } from "../actions/transactionActions";
+import moment from "moment";
 
-const AddTransactionScreen = () => {
+const AddTransactionScreen = ({ history }) => {
   const [transactionName, setTransactionName] = useState("");
   const [transactionType, setTransactionType] = useState("");
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState("");
   const [information, setInformation] = useState("");
+  const dispatch = useDispatch();
+
+  const transactionCreate = useSelector((state) => state.transactionCreate);
+  const {
+    loading: loadingCreate,
+    success: successCreate,
+    error: errorCreate,
+  } = transactionCreate;
+
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(
+      createTransaction(
+        transactionName,
+        transactionType,
+        information,
+        moment(date).format("DD/MM/YYYY").toString(),
+        parseInt(amount)
+      )
+    );
   };
+
+  useEffect(() => {
+    if (successCreate) {
+      dispatch({
+        type: TRANSACTION_CREATE_RESET,
+      });
+      history.push("/transactions");
+    }
+  }, [dispatch, history, successCreate]);
 
   return (
     <Layout>
+      {loadingCreate && <Loading />}
+      {errorCreate && <Message error={errorCreate} />}
       <div className="transactions-screen-container">
         <div className="transactions-screen-title">
           <h1 className="title">Add Transaction</h1>

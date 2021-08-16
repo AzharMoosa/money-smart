@@ -14,7 +14,11 @@ const getUsersTransactions = asyncHandler(async (req, res) => {
 
   if (transactions) {
     transactions.sort(function (a, b) {
-      return convertDate(b.date) - convertDate(a.date);
+      const dateSort = convertDate(b.date) - convertDate(a.date);
+      if (dateSort != 0) {
+        return dateSort;
+      }
+      return b.createdAt - a.createdAt;
     });
     res.json(transactions);
   } else {
@@ -60,7 +64,7 @@ const getTransaction = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc        Update Savings
+// @desc        Update Transactions
 // @route       PUT /api/transactions/:id
 // @access      Private
 const updateTransaction = asyncHandler(async (req, res) => {
@@ -82,18 +86,21 @@ const updateTransaction = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Delete Saving
-// @route   DELETE /api/transactions/:id
+// @desc    Delete TransactionS
+// @route   DELETE /api/transactions
 // @access  Private
 const deleteTransaction = asyncHandler(async (req, res) => {
-  const transaction = await Transaction.findById(req.params.id);
+  const transactions = await Transaction.find({ user: req.user._id });
 
-  if (transaction) {
-    await transaction.remove();
-    res.json({ message: "Transaction Removed" });
+  if (transactions) {
+    for (let i = 0; i < transactions.length; i++) {
+      const transaction = await Transaction.findById(transactions[i]._id);
+      await transaction.remove();
+    }
+    res.json({ message: "Transactions Removed" });
   } else {
     res.status(404);
-    throw new Error("Transaction Not Found");
+    throw new Error("Transactions Not Found");
   }
 });
 

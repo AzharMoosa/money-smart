@@ -12,11 +12,11 @@ const router = express.Router();
 router
   .route("/")
   .get(protect, getUsersTransactions)
-  .post(protect, createTransaction);
+  .post(protect, createTransaction)
+  .delete(protect, deleteTransaction);
 router
   .route("/:id")
   .get(protect, getTransaction)
-  .put(protect, updateTransaction)
-  .delete(protect, deleteTransaction);
+  .put(protect, updateTransaction);
 
 export default router;
