@@ -878,3 +878,30 @@ a {
   text-transform: uppercase;
   color: var(--black);
 }
+
+.savings-info-progress {
+  align-items: center;
+}
+
+.savings-info-progress canvas:first-child {
+  margin: 1rem 0;
+}
+
+.savings-info-progress-saved,
+.savings-info-progress-left,
+.savings-info-progress-total {
+  width: 85%;
+  margin: 0.5rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  color: var(--dark);
+  font-weight: bold;
+}
+
+.savings-info-progress-saved h4,
+.savings-info-progress-left h4,
+.savings-info-progress-total h4 {
+  font-weight: lighter;
+}
