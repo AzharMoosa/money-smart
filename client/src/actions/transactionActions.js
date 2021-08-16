@@ -161,7 +161,7 @@ export const updateTransaction =
     }
   };
 
-export const deleteTransaction = (id) => async (dispatch, getState) => {
+export const deleteTransaction = () => async (dispatch, getState) => {
   try {
     dispatch({
       type: TRANSACTION_DELETE_REQUEST,
@@ -177,7 +177,7 @@ export const deleteTransaction = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`/api/transactions/${id}`, config);
+    const { data } = await axios.delete(`/api/transactions`, config);
 
     dispatch({
       type: TRANSACTION_DELETE_SUCCESS,

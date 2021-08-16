@@ -1,11 +1,56 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../components/layout/Layout";
 import { FaChevronRight } from "react-icons/fa";
 import DefaultUser from "../img/default_user.png";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTransaction } from "../actions/transactionActions";
+import Loading from "../components/loading/Loading";
+import Message from "../components/error/Message";
+import { TRANSACTION_DELETE_RESET } from "../constants/transactionConstants";
 
 const SettingsScreen = () => {
+  const dispatch = useDispatch();
+
+  const transactionDelete = useSelector((state) => state.transactionDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = transactionDelete;
+
+  const deleteTransactionsHandler = () => {
+    confirmAlert({
+      title: `Delete Transactions`,
+      message: "Are you sure?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            dispatch(deleteTransaction());
+          },
+        },
+        {
+          label: "No",
+          onClick: () => {},
+        },
+      ],
+    });
+  };
+
+  useEffect(() => {
+    if (successDelete) {
+      dispatch({
+        type: TRANSACTION_DELETE_RESET,
+      });
+    }
+  }, [successDelete, dispatch]);
+
   return (
     <Layout>
+      {loadingDelete && <Loading />}
+      {errorDelete && <Message error={errorDelete} />}
       <div className="settings-screen-container">
         <div className="settings-screen-title">
           <h1 className="title">Settings</h1>
@@ -27,7 +72,10 @@ const SettingsScreen = () => {
               <h3>Delete All Savings</h3>
               <FaChevronRight />
             </div>
-            <div className="settings-button">
+            <div
+              onClick={deleteTransactionsHandler}
+              className="settings-button"
+            >
               <h3>Delete All Transactions</h3>
               <FaChevronRight />
             </div>
