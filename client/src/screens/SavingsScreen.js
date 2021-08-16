@@ -6,6 +6,7 @@ import SavingsProgressCard from "../components/savings/SavingsProgressCard";
 import { Link } from "react-router-dom";
 import { getSavings } from "../actions/savingActions";
 import Message from "../components/error/Message";
+import Loading from "../components/loading/Loading";
 
 const SavingsScreen = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const SavingsScreen = () => {
 
   return (
     <Layout>
+      {loading && <Loading />}
       <div className="savings-screen-container">
         <div className="savings-screen-title">
           <h1 className="title">Savings</h1>
@@ -36,7 +38,6 @@ const SavingsScreen = () => {
           </div>
         </div>
 
-        {loading && <p>Loading...</p>}
         {error && <Message error={error} />}
 
         {!loading &&

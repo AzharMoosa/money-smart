@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSaving } from "../actions/savingActions";
 import Message from "../components/error/Message";
 import { Doughnut } from "react-chartjs-2";
+import Loading from "../components/loading/Loading";
 
 const SavingsInfoScreen = ({ match }) => {
   const dispatch = useDispatch();
@@ -48,8 +49,8 @@ const SavingsInfoScreen = ({ match }) => {
 
   return (
     <Layout>
+      {loading && <Loading />}
       <div className="savings-info-container">
-        {loading && <p>Loading...</p>}
         {error && <Message error={error} />}
         {!loading && saving != null && (
           <div>
