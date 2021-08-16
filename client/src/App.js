@@ -9,6 +9,7 @@ import SavingsInfoScreen from "./screens/SavingsInfoScreen";
 import SavingAddAmountScreen from "./screens/SavingAddAmountScreen";
 import SavingEditInfoScreen from "./screens/SavingEditInfoScreen";
 import TransactionsScreen from "./screens/TransactionsScreen";
+import TransactionInfoScreen from "./screens/TransactionInfoScreen";
 import AddTransactionScreen from "./screens/AddTransactionScreen";
 import ReceiptsScreen from "./screens/ReceiptsScreen";
 import SettingsScreen from "./screens/SettingsScreen";
@@ -40,6 +41,11 @@ function App() {
           exact
           path="/transactions"
           component={TransactionsScreen}
+        />
+        <PrivateRoute
+          exact
+          path="/transactions/:id"
+          component={TransactionInfoScreen}
         />
         <PrivateRoute
           exact

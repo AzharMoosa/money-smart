@@ -41,13 +41,17 @@ const TransactionsScreen = () => {
 
             <div className="recent-transactions-list">
               {transactions.map((transaction) => (
-                <RecentTransactionItem
+                <Link
                   key={transaction._id}
-                  date={transaction.date}
-                  name={transaction.name}
-                  type={transaction.type}
-                  price={transaction.amount}
-                />
+                  to={`transactions/${transaction._id}`}
+                >
+                  <RecentTransactionItem
+                    date={transaction.date}
+                    name={transaction.name}
+                    type={transaction.type}
+                    price={transaction.amount}
+                  />
+                </Link>
               ))}
             </div>
           </div>
