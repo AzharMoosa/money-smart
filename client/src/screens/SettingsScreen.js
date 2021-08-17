@@ -6,9 +6,11 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTransaction } from "../actions/transactionActions";
+import { deleteReceipt } from "../actions/receiptActions";
 import Loading from "../components/loading/Loading";
 import Message from "../components/error/Message";
 import { TRANSACTION_DELETE_RESET } from "../constants/transactionConstants";
+import { RECEIPT_DELETE_RESET } from "../constants/receiptConstants";
 
 const SettingsScreen = () => {
   const dispatch = useDispatch();
@@ -39,18 +41,50 @@ const SettingsScreen = () => {
     });
   };
 
+  const receiptDelete = useSelector((state) => state.receiptDelete);
+  const {
+    loading: loadingReceiptDelete,
+    error: errorReceiptDelete,
+    success: successReceiptDelete,
+  } = receiptDelete;
+
+  const deleteReceiptsHandler = () => {
+    confirmAlert({
+      title: `Delete Receipts`,
+      message: "Are you sure?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            dispatch(deleteReceipt());
+          },
+        },
+        {
+          label: "No",
+          onClick: () => {},
+        },
+      ],
+    });
+  };
+
   useEffect(() => {
     if (successDelete) {
       dispatch({
         type: TRANSACTION_DELETE_RESET,
       });
+    } else if (successReceiptDelete) {
+      dispatch({
+        type: RECEIPT_DELETE_RESET,
+      });
     }
-  }, [successDelete, dispatch]);
+  }, [successDelete, dispatch, successReceiptDelete]);
 
   return (
     <Layout>
       {loadingDelete && <Loading />}
       {errorDelete && <Message error={errorDelete} />}
+      {loadingReceiptDelete && <Loading />}
+      {errorReceiptDelete && <Message error={errorReceiptDelete} />}
       <div className="settings-screen-container">
         <div className="settings-screen-title">
           <h1 className="title">Settings</h1>
@@ -79,7 +113,7 @@ const SettingsScreen = () => {
               <h3>Delete All Transactions</h3>
               <FaChevronRight />
             </div>
-            <div className="settings-button">
+            <div onClick={deleteReceiptsHandler} className="settings-button">
               <h3>Delete All Receipts</h3>
               <FaChevronRight />
             </div>
