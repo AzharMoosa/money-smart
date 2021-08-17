@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteTransaction } from "../actions/transactionActions";
 import { deleteReceipt } from "../actions/receiptActions";
 import { deleteAllSaving } from "../actions/savingActions";
-import { getUserDetails } from "../actions/userActions";
+import { deleteUser, getUserDetails } from "../actions/userActions";
 import Loading from "../components/loading/Loading";
 import Message from "../components/error/Message";
 import { TRANSACTION_DELETE_RESET } from "../constants/transactionConstants";
@@ -16,7 +16,7 @@ import { RECEIPT_DELETE_RESET } from "../constants/receiptConstants";
 import { SAVING_DELETE_RESET } from "../constants/savingConstants";
 import { Link } from "react-router-dom";
 
-const SettingsScreen = () => {
+const SettingsScreen = ({ history }) => {
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -107,6 +107,26 @@ const SettingsScreen = () => {
     });
   };
 
+  const deleteAccount = (id) => {
+    confirmAlert({
+      title: `Delete Account`,
+      message: "Are you sure?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            dispatch(deleteUser(id));
+            history.push("/login");
+          },
+        },
+        {
+          label: "No",
+          onClick: () => {},
+        },
+      ],
+    });
+  };
+
   useEffect(() => {
     if (successDelete) {
       dispatch({
@@ -177,7 +197,10 @@ const SettingsScreen = () => {
                 <h3>Delete All Receipts</h3>
                 <FaChevronRight />
               </div>
-              <div className="settings-button">
+              <div
+                onClick={(e) => deleteAccount(user._id)}
+                className="settings-button"
+              >
                 <h3>Delete Account</h3>
                 <FaChevronRight />
               </div>

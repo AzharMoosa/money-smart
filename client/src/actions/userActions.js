@@ -218,6 +218,13 @@ export const deleteUser = (id) => async (dispatch, getState) => {
 
     const { data } = await axios.delete(`/api/users/${id}`, config);
 
+    localStorage.removeItem("userInfo");
+    dispatch({
+      type: USER_LOGOUT,
+    });
+    dispatch({
+      type: USER_DETAILS_RESET,
+    });
     dispatch({
       type: USER_DELETE_SUCCESS,
       payload: data,
