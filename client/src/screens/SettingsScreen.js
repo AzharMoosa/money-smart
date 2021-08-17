@@ -155,7 +155,7 @@ const SettingsScreen = () => {
                   <FaChevronRight />
                 </div>
               </Link>
-              <Link to="/settings/account-settings">
+              <Link to={`/settings/account/${user._id}`}>
                 <div className="settings-button">
                   <h3>Account Settings</h3>
                   <FaChevronRight />

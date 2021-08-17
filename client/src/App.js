@@ -63,7 +63,7 @@ function App() {
         />
         <PrivateRoute
           exact
-          path="/settings/account-settings"
+          path="/settings/account/:id"
           component={AccountSettingsScreen}
         />
         <Route exact path="/login" component={LoginScreen} />
