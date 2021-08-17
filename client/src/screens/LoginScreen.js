@@ -59,10 +59,10 @@ const LoginScreen = ({ history }) => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <button className="btn-large" type="submit">
+            <button type="submit" className="btn-large">
               Log In
             </button>
-            <button className="btn-large-dark" type="submit">
+            <button type="button" className="btn-large-dark">
               <FaGoogle />
               <span>Log In With Google</span>
             </button>

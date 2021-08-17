@@ -71,7 +71,7 @@ export const register =
         },
       };
 
-      const data = axios.post(
+      const { data } = axios.post(
         "/api/users",
         { firstName, lastName, email, password },
         config

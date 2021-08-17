@@ -1,6 +1,9 @@
 import asyncHandler from "express-async-handler";
 import generateToken from "../utils/generateToken.js";
 import User from "../models/User.js";
+import Receipt from "../models/Receipt.js";
+import Saving from "../models/Saving.js";
+import Transaction from "../models/Transaction.js";
 
 // @desc        Login User
 // @route       POST /api/users/login
@@ -146,6 +149,27 @@ const deleteUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 
   if (user) {
+    const savings = await Saving.find({ user: req.user._id });
+    if (savings) {
+      for (let i = 0; i < savings.length; i++) {
+        const saving = await Saving.findById(savings[i]._id);
+        await saving.remove();
+      }
+    }
+    const transactions = await Transaction.find({ user: req.user._id });
+    if (transactions) {
+      for (let i = 0; i < transactions.length; i++) {
+        const transaction = await Transaction.findById(transactions[i]._id);
+        await transaction.remove();
+      }
+    }
+    const receipts = await Receipt.find({ user: req.user._id });
+    if (receipts) {
+      for (let i = 0; i < receipts.length; i++) {
+        const receipt = await Receipt.findById(receipts[i]._id);
+        await receipt.remove();
+      }
+    }
     await user.remove();
     res.json({ message: "User Removed" });
   } else {
