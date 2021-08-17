@@ -3,7 +3,6 @@ import Layout from "../components/layout/Layout";
 import HighestExpenses from "../components/transactions/HighestExpenses";
 import { useDispatch, useSelector } from "react-redux";
 import { getTransactions } from "../actions/transactionActions";
-import { getUserDetails } from "../actions/userActions";
 import { getSavings } from "../actions/savingActions";
 import Loading from "../components/loading/Loading";
 import Message from "../components/error/Message";
@@ -19,7 +18,7 @@ const HomeScreen = () => {
 
   const userSavingsList = useSelector((state) => state.userSavingsList);
 
-  const userDetails = useSelector((state) => state.userDetails);
+  const userLogin = useSelector((state) => state.userLogin);
 
   const {
     loading: loadingTransactions,
@@ -34,15 +33,14 @@ const HomeScreen = () => {
   } = userSavingsList;
 
   const {
-    loading: loadingUserDetails,
-    user,
-    error: errorUserDetails,
-  } = userDetails;
+    loading: loadingUserLogin,
+    userInfo,
+    error: errorUserLogin,
+  } = userLogin;
 
   useEffect(() => {
     dispatch(getTransactions());
     dispatch(getSavings());
-    dispatch(getUserDetails());
   }, [dispatch]);
 
   return (
@@ -51,12 +49,12 @@ const HomeScreen = () => {
       {errorTransactions && <Message error={errorTransactions} />}
       {loadingSavings && <Loading />}
       {errorSavings && <Message error={errorSavings} />}
-      {loadingUserDetails && <Loading />}
-      {errorUserDetails && <Message error={errorUserDetails} />}
+      {loadingUserLogin && <Loading />}
+      {errorUserLogin && <Message error={errorUserLogin} />}
       {!loadingTransactions &&
         !loadingSavings &&
-        !loadingUserDetails &&
-        user != null &&
+        !loadingUserLogin &&
+        userInfo != null &&
         savings != null &&
         transactions != null && (
           <div className="home-container">
@@ -64,7 +62,7 @@ const HomeScreen = () => {
               <h1 className="title">Dashboard</h1>
               <div className="user-icon">
                 <h3>
-                  {user.firstName} {user.lastName}
+                  {userInfo.firstName} {userInfo.lastName}
                 </h3>
                 <div className="user-img"></div>
               </div>
