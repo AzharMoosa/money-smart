@@ -55,7 +55,7 @@ const TransactionsScreen = () => {
               ))}
             </div>
           </div>
-          <HighestExpenses height={905} />
+          <HighestExpenses transactions={transactions} height={905} />
         </div>
       </div>
     </Layout>

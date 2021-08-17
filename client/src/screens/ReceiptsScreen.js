@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "../components/layout/Layout";
-import RecentTransactionItem from "../components/transactions/RecentTransactionItem";
 
 const ReceiptsScreen = () => {
   return (
@@ -16,32 +15,7 @@ const ReceiptsScreen = () => {
               <h2>Receipt History</h2>
             </div>
 
-            <div className="recent-transactions-list">
-              <RecentTransactionItem
-                date={new Date()}
-                name={"Mc Donalds"}
-                type={"Food"}
-                price={10.2}
-              />
-              <RecentTransactionItem
-                date={new Date()}
-                name={"Starbucks"}
-                type={"Food"}
-                price={5.7}
-              />
-              <RecentTransactionItem
-                date={new Date()}
-                name={"Rent"}
-                type={"Home"}
-                price={1800}
-              />
-              <RecentTransactionItem
-                date={new Date(2021, 7, 14, 12)}
-                name={"Rent"}
-                type={"Home"}
-                price={1800}
-              />
-            </div>
+            <div className="recent-transactions-list"></div>
           </div>
 
           <div className="receipt-upload">

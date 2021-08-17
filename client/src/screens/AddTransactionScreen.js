@@ -74,9 +74,7 @@ const AddTransactionScreen = ({ history }) => {
                 required
                 onChange={(e) => setTransactionType(e.target.value)}
               >
-                <option selected="selected" value="Rent">
-                  Rent
-                </option>
+                <option value="Rent">Rent</option>
                 <option value="Food">Food</option>
                 <option value="Going Out">Going Out</option>
                 <option value="Clothes/Shoes">Clothes</option>
@@ -85,13 +83,6 @@ const AddTransactionScreen = ({ history }) => {
                 <option value="Holiday">Holiday</option>
                 <option value="Other">Other</option>
               </select>
-              {/* <input
-                type="transactionType"
-                id="transactionType"
-                value={transactionType}
-                required
-                onChange={(e) => setTransactionType(e.target.value)}
-              /> */}
             </div>
 
             <div className="add-transaction-input">
