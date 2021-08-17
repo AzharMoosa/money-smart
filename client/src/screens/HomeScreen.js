@@ -7,6 +7,7 @@ import { getUserDetails } from "../actions/userActions";
 import { getSavings } from "../actions/savingActions";
 import Loading from "../components/loading/Loading";
 import Message from "../components/error/Message";
+import SavingsCard from "../components/savings/SavingsCard";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -76,15 +77,9 @@ const HomeScreen = () => {
                 <div className="savings-overview">
                   <h3>Savings</h3>
                   <div className="savings-cards">
-                    <div className="savings-card">
-                      <h3>House</h3>
-                    </div>
-                    <div className="savings-card">
-                      <h3>Car</h3>
-                    </div>
-                    <div className="savings-card">
-                      <h3>Shoes</h3>
-                    </div>
+                    {savings.slice(0, 3).map((saving) => (
+                      <SavingsCard saving={saving} />
+                    ))}
                   </div>
                 </div>
               </div>
