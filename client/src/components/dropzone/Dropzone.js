@@ -8,6 +8,9 @@ const Dropzone = () => {
   const [unsupportedFile, setUnsupportedFile] = useState(null);
   const fileInputRef = useRef();
   const [uploaded, setUploaded] = useState(false);
+  const [receiptName, setReceiptName] = useState("");
+  const [receiptTotal, setReceiptTotal] = useState(0);
+  const [receiptType, setReceiptType] = useState("");
 
   const dragOver = (e) => {
     e.preventDefault();
@@ -67,7 +70,10 @@ const Dropzone = () => {
           "Content-Type": "multipart/form-data",
         },
       };
-      await axios.post("/api/upload", formData, config);
+      const { data } = await axios.post("/api/upload", formData, config);
+      setReceiptName(data.name);
+      setReceiptTotal(data.amount);
+      setReceiptType(data.type);
       setValidFile("");
       setUploaded(true);
     } catch (err) {
@@ -113,8 +119,29 @@ const Dropzone = () => {
         </div>
       </div>
       {uploaded && (
-        <div>
-          <h2>Uploaded</h2>
+        <div className="receipt-input-layout">
+          <input
+            className="receipt-input"
+            type="receiptName"
+            id="receiptName"
+            value={receiptName}
+            onChange={(e) => setReceiptName(e.target.value)}
+          />
+          <input
+            className="receipt-input"
+            type="number"
+            id="receiptTotal"
+            value={receiptTotal}
+            onChange={(e) => setReceiptTotal(e.target.value)}
+          />
+          <input
+            className="receipt-input"
+            type="receiptType"
+            id="receiptType"
+            value={receiptType}
+            onChange={(e) => setReceiptType(e.target.value)}
+          />
+          <button className="btn-upload btn-add">Add</button>
         </div>
       )}
     </>
