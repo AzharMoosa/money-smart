@@ -80,7 +80,7 @@ const HomeScreen = () => {
                   <h3>Savings</h3>
                   <div className="savings-cards">
                     {savings.slice(0, 3).map((saving) => (
-                      <SavingsCard saving={saving} />
+                      <SavingsCard key={saving._id} saving={saving} />
                     ))}
                   </div>
                 </div>
