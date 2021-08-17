@@ -20,6 +20,15 @@ const UserSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    age: {
+      type: Number,
+    },
+    salary: {
+      type: Number,
+    },
+    retirementAge: {
+      type: Number,
+    },
   },
   {
     timestamps: true,
