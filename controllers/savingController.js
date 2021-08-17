@@ -97,7 +97,7 @@ const addAmount = asyncHandler(async (req, res) => {
 });
 
 // @desc    Delete Saving
-// @route   DELETE /api/users/:id
+// @route   DELETE /api/savings/:id
 // @access  Private
 const deleteSaving = asyncHandler(async (req, res) => {
   const saving = await Saving.findById(req.params.id);
