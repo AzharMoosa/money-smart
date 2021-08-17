@@ -504,6 +504,13 @@ option {
   border-radius: 22px;
   padding: 1rem;
   color: var(--primary-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.monthly-spending-overview h3 {
+  margin-bottom: 2rem;
 }
 
 .savings-overview {

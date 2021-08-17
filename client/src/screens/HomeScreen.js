@@ -8,6 +8,7 @@ import { getSavings } from "../actions/savingActions";
 import Loading from "../components/loading/Loading";
 import Message from "../components/error/Message";
 import SavingsCard from "../components/savings/SavingsCard";
+import LineChart from "../components/charts/LineChart";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -73,6 +74,7 @@ const HomeScreen = () => {
               <div className="home-left">
                 <div className="monthly-spending-overview">
                   <h3>Monthly Spending</h3>
+                  <LineChart transactions={transactions} />
                 </div>
                 <div className="savings-overview">
                   <h3>Savings</h3>
