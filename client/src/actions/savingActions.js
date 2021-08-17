@@ -5,6 +5,9 @@ import {
   SAVING_CREATE_FAIL,
   SAVING_CREATE_REQUEST,
   SAVING_CREATE_SUCCESS,
+  SAVING_DELETE_ALL_FAIL,
+  SAVING_DELETE_ALL_REQUEST,
+  SAVING_DELETE_ALL_SUCCESS,
   SAVING_DELETE_FAIL,
   SAVING_DELETE_REQUEST,
   SAVING_DELETE_SUCCESS,
@@ -228,6 +231,39 @@ export const deleteSaving = (id) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: SAVING_DELETE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const deleteAllSaving = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: SAVING_DELETE_ALL_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.delete(`/api/savings`, config);
+
+    dispatch({
+      type: SAVING_DELETE_ALL_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: SAVING_DELETE_ALL_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

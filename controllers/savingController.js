@@ -111,6 +111,24 @@ const deleteSaving = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Delete All Savings
+// @route   DELETE /api/savings
+// @access  Private
+const deleteSavings = asyncHandler(async (req, res) => {
+  const savings = await Saving.find({ user: req.user._id });
+
+  if (savings) {
+    for (let i = 0; i < savings.length; i++) {
+      const saving = await Saving.findById(savings[i]._id);
+      await saving.remove();
+    }
+    res.json({ message: "Savings Removed" });
+  } else {
+    res.status(404);
+    throw new Error("Saving Not Found");
+  }
+});
+
 export {
   getUsersSavings,
   getSaving,
@@ -118,4 +136,5 @@ export {
   updateSavings,
   addAmount,
   deleteSaving,
+  deleteSavings,
 };

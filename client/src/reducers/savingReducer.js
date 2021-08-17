@@ -11,6 +11,10 @@ import {
   SAVING_DELETE_REQUEST,
   SAVING_DELETE_RESET,
   SAVING_DELETE_SUCCESS,
+  SAVING_DELETE_ALL_FAIL,
+  SAVING_DELETE_ALL_REQUEST,
+  SAVING_DELETE_ALL_RESET,
+  SAVING_DELETE_ALL_SUCCESS,
   SAVING_GET_FAIL,
   SAVING_GET_REQUEST,
   SAVING_GET_SUCCESS,
@@ -131,6 +135,29 @@ export const savingDeleteReducer = (state = { saving: {} }, action) => {
         error: action.payload,
       };
     case SAVING_DELETE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+export const savingDeleteAllReducer = (state = { saving: {} }, action) => {
+  switch (action.type) {
+    case SAVING_DELETE_ALL_REQUEST:
+      return {
+        loading: true,
+      };
+    case SAVING_DELETE_ALL_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+      };
+    case SAVING_DELETE_ALL_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    case SAVING_DELETE_ALL_RESET:
       return {};
     default:
       return state;
