@@ -58,7 +58,7 @@ function App() {
         <PrivateRoute exact path="/settings" component={SettingsScreen} />
         <PrivateRoute
           exact
-          path="/settings/user-info"
+          path="/settings/user/:id"
           component={UserInformationScreen}
         />
         <PrivateRoute

@@ -149,7 +149,7 @@ const SettingsScreen = () => {
           <div className="settings-dashboard">
             <div className="settings-items">
               <h3 className="settings-title">Account</h3>
-              <Link to="/settings/user-info">
+              <Link to={`/settings/user/${user._id}`}>
                 <div className="settings-button">
                   <h3>User Information</h3>
                   <FaChevronRight />

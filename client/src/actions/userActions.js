@@ -16,6 +16,9 @@ import {
   USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
   USER_DELETE_FAIL,
+  USER_UPDATE_DETAILS_SUCCESS,
+  USER_UPDATE_DETAILS_FAIL,
+  USER_UPDATE_DETAILS_REQUEST,
 } from "../constants/userConstants";
 
 import axios from "axios";
@@ -132,6 +135,40 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 export const updateUserDetails = (user) => async (dispatch, getState) => {
   try {
     dispatch({
+      type: USER_UPDATE_DETAILS_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.put(`/api/users`, user, config);
+
+    dispatch({
+      type: USER_UPDATE_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_UPDATE_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const updateUser = (user) => async (dispatch, getState) => {
+  try {
+    dispatch({
       type: USER_UPDATE_REQUEST,
     });
 
@@ -146,7 +183,7 @@ export const updateUserDetails = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/users/profile`, user, config);
+    const { data } = await axios.put(`/api/users/profile`, user, config);
 
     dispatch({
       type: USER_UPDATE_SUCCESS,
@@ -179,7 +216,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/users/${id}`, config);
+    const { data } = await axios.delete(`/api/users/${id}`, config);
 
     dispatch({
       type: USER_DELETE_SUCCESS,

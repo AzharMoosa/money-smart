@@ -90,6 +90,26 @@ const getUserById = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc        Update User Details
+// @route       PUT /api/users
+// @access      Private
+const updateUserDetails = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    user.age = req.body.age || user.age;
+    user.retirementAge = req.body.retirementAge || user.retirementAge;
+    user.salary = req.body.salary || user.salary;
+
+    const updatedUser = await user.save();
+
+    res.json(updatedUser);
+  } else {
+    res.status(404);
+    throw new Error("User Not Found");
+  }
+});
+
 // @desc        Update User Profile
 // @route       PUT /api/users/profile
 // @access      Private
@@ -139,6 +159,7 @@ export {
   registerUser,
   getUserProfile,
   updateUserProfile,
+  updateUserDetails,
   getUserById,
   deleteUser,
 };
