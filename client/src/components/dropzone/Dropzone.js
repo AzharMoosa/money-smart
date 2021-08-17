@@ -1,15 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createReceipt } from "../../actions/receiptActions";
 import moment from "moment";
-import { RECEIPT_CREATE_RESET } from "../../constants/receiptConstants";
-import Loading from "../loading/Loading";
-import Message from "../error/Message";
 
-const Dropzone = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
+const Dropzone = ({ history }) => {
   const [validFile, setValidFile] = useState(null);
   const [unsupportedFile, setUnsupportedFile] = useState(null);
   const fileInputRef = useRef();
@@ -19,21 +14,6 @@ const Dropzone = () => {
   const [receiptType, setReceiptType] = useState("");
   const [image, setImage] = useState("");
   const dispatch = useDispatch();
-
-  const transactionCreate = useSelector((state) => state.transactionCreate);
-  const {
-    loading: loadingCreate,
-    error: errorCreate,
-    success: successCreate,
-  } = transactionCreate;
-
-  useEffect(() => {
-    if (successCreate) {
-      dispatch({
-        type: RECEIPT_CREATE_RESET,
-      });
-    }
-  }, [dispatch, successCreate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -80,11 +60,9 @@ const Dropzone = () => {
 
   const handleFile = (file) => {
     if (validateFile(file)) {
-      setSelectedFile(file);
       setValidFile(file);
     } else {
       file["invalid"] = true;
-      setErrorMessage("File type not permitted");
       setUnsupportedFile(file);
     }
   };
@@ -121,8 +99,6 @@ const Dropzone = () => {
 
   return (
     <>
-      {loadingCreate && <Loading />}
-      {errorCreate && <Message error={errorCreate} />}
       <div className="upload-box">
         <div
           className="upload-drop-container"
