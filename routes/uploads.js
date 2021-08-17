@@ -39,6 +39,7 @@ router.post("/", upload.single("image"), (req, res) => {
     name: "Test",
     amount: "10.20",
     type: "Food",
+    image: `/${req.file.path}`,
   });
 });
 

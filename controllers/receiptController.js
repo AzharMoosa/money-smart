@@ -27,6 +27,7 @@ const createReceipt = asyncHandler(async (req, res) => {
     amount,
     date,
     image,
+    user: req.user._id,
   });
 
   if (receipt) {

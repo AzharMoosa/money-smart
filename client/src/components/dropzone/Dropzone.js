@@ -1,5 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { createReceipt } from "../../actions/receiptActions";
+import moment from "moment";
+import { RECEIPT_CREATE_RESET } from "../../constants/receiptConstants";
+import Loading from "../loading/Loading";
+import Message from "../error/Message";
 
 const Dropzone = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -11,6 +17,36 @@ const Dropzone = () => {
   const [receiptName, setReceiptName] = useState("");
   const [receiptTotal, setReceiptTotal] = useState(0);
   const [receiptType, setReceiptType] = useState("");
+  const [image, setImage] = useState("");
+  const dispatch = useDispatch();
+
+  const transactionCreate = useSelector((state) => state.transactionCreate);
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+  } = transactionCreate;
+
+  useEffect(() => {
+    if (successCreate) {
+      dispatch({
+        type: RECEIPT_CREATE_RESET,
+      });
+    }
+  }, [dispatch, successCreate]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(
+      createReceipt(
+        receiptName,
+        receiptType,
+        receiptTotal,
+        moment(new Date()).format("DD/MM/YYYY").toString(),
+        image
+      )
+    );
+  };
 
   const dragOver = (e) => {
     e.preventDefault();
@@ -74,6 +110,7 @@ const Dropzone = () => {
       setReceiptName(data.name);
       setReceiptTotal(data.amount);
       setReceiptType(data.type);
+      setImage(data.image);
       setValidFile("");
       setUploaded(true);
     } catch (err) {
@@ -84,6 +121,8 @@ const Dropzone = () => {
 
   return (
     <>
+      {loadingCreate && <Loading />}
+      {errorCreate && <Message error={errorCreate} />}
       <div className="upload-box">
         <div
           className="upload-drop-container"
@@ -119,7 +158,7 @@ const Dropzone = () => {
         </div>
       </div>
       {uploaded && (
-        <div className="receipt-input-layout">
+        <form className="receipt-input-layout" onSubmit={handleSubmit}>
           <input
             className="receipt-input"
             type="receiptName"
@@ -141,8 +180,10 @@ const Dropzone = () => {
             value={receiptType}
             onChange={(e) => setReceiptType(e.target.value)}
           />
-          <button className="btn-upload btn-add">Add</button>
-        </div>
+          <button type="submit" className="btn-upload btn-add">
+            Add
+          </button>
+        </form>
       )}
     </>
   );
