@@ -124,7 +124,6 @@ export const savingDeleteReducer = (state = { saving: {} }, action) => {
       return {
         loading: false,
         success: true,
-        saving: action.payload,
       };
     case SAVING_DELETE_FAIL:
       return {

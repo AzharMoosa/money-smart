@@ -129,7 +129,6 @@ export const transactionDeleteReducer = (
       return {
         loading: false,
         success: true,
-        transaction: action.payload,
       };
     case TRANSACTION_DELETE_FAIL:
       return {

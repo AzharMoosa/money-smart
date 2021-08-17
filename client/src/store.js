@@ -5,6 +5,8 @@ import {
   userLoginReducer,
   userRegisterReducer,
   userDetailsReducer,
+  userUpdateReducer,
+  userDeleteReducer,
 } from "./reducers/userReducers";
 import {
   savingDetailsReducer,
@@ -27,6 +29,8 @@ const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
+  userUpdate: userUpdateReducer,
+  userDelete: userDeleteReducer,
   savingDetails: savingDetailsReducer,
   savingCreate: savingCreateReducer,
   savingDelete: savingDeleteReducer,
