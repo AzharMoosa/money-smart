@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "../components/layout/Layout";
+import Dropzone from "../components/dropzone/Dropzone";
 
 const ReceiptsScreen = () => {
   return (
@@ -20,6 +21,7 @@ const ReceiptsScreen = () => {
 
           <div className="receipt-upload">
             <h3>Add New Receipt</h3>
+            <Dropzone />
           </div>
         </div>
       </div>

@@ -22,7 +22,7 @@ app.use("/api/receipts", receiptsRoute);
 app.use("/api/upload", uploadRoute);
 
 const __dirname = path.resolve();
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 // Error Middleware
 app.use(notFound);
