@@ -1,19 +1,34 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createReceipt } from "../../actions/receiptActions";
 import moment from "moment";
+import Loading from "../loading/Loading";
 
 const Dropzone = ({ history }) => {
   const [validFile, setValidFile] = useState(null);
   const [unsupportedFile, setUnsupportedFile] = useState(null);
   const fileInputRef = useRef();
   const [uploaded, setUploaded] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [receiptName, setReceiptName] = useState("");
   const [receiptTotal, setReceiptTotal] = useState(0);
-  const [receiptType, setReceiptType] = useState("");
+  const [receiptType, setReceiptType] = useState("Other");
   const [image, setImage] = useState("");
   const dispatch = useDispatch();
+
+  const receiptCreate = useSelector((state) => state.receiptCreate);
+  const { success: successCreate } = receiptCreate;
+
+  useEffect(() => {
+    if (successCreate) {
+      setReceiptName("");
+      setReceiptTotal(0);
+      setReceiptType("Other");
+      setImage("");
+      setUploaded(false);
+    }
+  }, [successCreate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -84,10 +99,11 @@ const Dropzone = ({ history }) => {
           "Content-Type": "multipart/form-data",
         },
       };
+      setUploading(true);
       const { data } = await axios.post("/api/upload", formData, config);
+      setUploading(false);
       setReceiptName(data.name);
       setReceiptTotal(data.amount);
-      setReceiptType(data.type);
       setImage(data.image);
       setValidFile("");
       setUploaded(true);
@@ -133,6 +149,7 @@ const Dropzone = ({ history }) => {
           {unsupportedFile ? <p>File Not Valid</p> : ""}
         </div>
       </div>
+      {uploading && <Loading />}
       {uploaded && (
         <form className="receipt-input-layout" onSubmit={handleSubmit}>
           <input
@@ -140,6 +157,7 @@ const Dropzone = ({ history }) => {
             type="receiptName"
             id="receiptName"
             value={receiptName}
+            required
             onChange={(e) => setReceiptName(e.target.value)}
           />
           <input
@@ -147,15 +165,26 @@ const Dropzone = ({ history }) => {
             type="number"
             id="receiptTotal"
             value={receiptTotal}
+            required
             onChange={(e) => setReceiptTotal(e.target.value)}
           />
-          <input
+          <select
             className="receipt-input"
-            type="receiptType"
-            id="receiptType"
             value={receiptType}
+            type="transactionType"
+            id="transactionType"
+            required
             onChange={(e) => setReceiptType(e.target.value)}
-          />
+          >
+            <option value="Other">Other</option>
+            <option value="Rent">Rent</option>
+            <option value="Food">Food</option>
+            <option value="Going Out">Going Out</option>
+            <option value="Clothes/Shoes">Clothes</option>
+            <option value="Groceries">Groceries</option>
+            <option value="Bills">Bills</option>
+            <option value="Holiday">Holiday</option>
+          </select>
           <button type="submit" className="btn-upload btn-add">
             Add
           </button>
