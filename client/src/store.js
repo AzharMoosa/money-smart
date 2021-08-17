@@ -25,6 +25,14 @@ import {
   userTransactionsListReducer,
 } from "./reducers/transactionReducer";
 
+import {
+  receiptDetailsReducer,
+  receiptCreateReducer,
+  receiptDeleteReducer,
+  receiptUpdateReducer,
+  userReceiptsListReducer,
+} from "./reducers/receiptReducer";
+
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
@@ -42,6 +50,11 @@ const reducer = combineReducers({
   transactionDelete: transactionDeleteReducer,
   transactionUpdate: transactionUpdateReducer,
   userTransactionsList: userTransactionsListReducer,
+  receiptDetails: receiptDetailsReducer,
+  receiptCreate: receiptCreateReducer,
+  receiptDelete: receiptDeleteReducer,
+  receiptUpdate: receiptUpdateReducer,
+  userReceiptsList: userReceiptsListReducer,
 });
 
 const usersInfoFromStorage = localStorage.getItem("userInfo")
