@@ -30,7 +30,7 @@ const SavingAddAmountScreen = ({ match, history }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     const formattedDate = moment(date).format("DD/MM/YYYY").toString();
-    dispatch(addAmountToSaving(parseInt(amount), formattedDate, savingId));
+    dispatch(addAmountToSaving(parseFloat(amount), formattedDate, savingId));
   };
 
   return (

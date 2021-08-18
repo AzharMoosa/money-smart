@@ -16,6 +16,7 @@ import SettingsScreen from "./screens/SettingsScreen";
 import UserInformationScreen from "./screens/UserInformationScreen";
 import AccountSettingsScreen from "./screens/AccountSettingsScreen";
 import PrivateRoute from "./components/routing/PrivateRoute";
+import ReceiptInfoScreen from "./screens/ReceiptInfoScreen";
 
 function App() {
   return (
@@ -77,6 +78,11 @@ function App() {
           component={AddTransactionScreen}
         />
         <PrivateRoute exact path="/receipts" component={ReceiptsScreen} />
+        <PrivateRoute
+          exact
+          path="/receipts/:id"
+          component={ReceiptInfoScreen}
+        />
         <PrivateRoute
           path="/receipts/page/:pageNumber"
           component={ReceiptsScreen}

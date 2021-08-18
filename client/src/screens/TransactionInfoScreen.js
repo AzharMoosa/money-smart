@@ -38,7 +38,7 @@ const TransactionInfoScreen = ({ match, history }) => {
         transactionType,
         information,
         date: moment(date).format("DD/MM/YYYY").toString(),
-        amount: parseInt(amount),
+        amount: parseFloat(amount),
       })
     );
   };

@@ -924,6 +924,17 @@ option {
   border-radius: 22px;
 }
 
+.receipt-info {
+  width: 1488px;
+  height: 700px;
+  background-color: var(--secondary-bg);
+  border-radius: 22px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .add-amount {
   width: 1488px;
   height: 400px;
@@ -957,6 +968,10 @@ option {
   align-items: center;
 }
 
+.receipt-info .add-transaction-input {
+  margin-bottom: 3rem;
+}
+
 .add-amount .add-transaction-input {
   margin-bottom: 3rem;
 }
@@ -968,7 +983,8 @@ option {
   align-items: center;
 }
 
-.add-transaction-btn {
+.add-transaction-btn,
+.open-light-box {
   width: 308px;
   height: 68px;
   background-color: var(--primary-bg);
@@ -980,6 +996,10 @@ option {
   font-family: "Lato", sans-serif;
   text-transform: uppercase;
   color: var(--black);
+}
+
+.open-light-box {
+  margin: 2rem 0;
 }
 
 .savings-info-progress {

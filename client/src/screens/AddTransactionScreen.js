@@ -30,7 +30,7 @@ const AddTransactionScreen = ({ history }) => {
         transactionType,
         information,
         moment(date).format("DD/MM/YYYY").toString(),
-        parseInt(amount)
+        parseFloat(amount)
       )
     );
   };
