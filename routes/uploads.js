@@ -2,6 +2,7 @@ import express from "express";
 import multer from "multer";
 import path from "path";
 import Tesseract from "tesseract.js";
+import colors from "colors";
 import fs from "fs";
 const router = express.Router();
 
@@ -38,13 +39,49 @@ const upload = multer({
 
 const extractData = (text) => {
   const splits = text.split(/\r?\n/);
-  const name = splits[0].split(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g)[0];
+  let name = "";
+
+  for (let i = 0; i < splits.length; i++) {
+    const line = splits[i].split(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g)[0];
+    if (line != "") {
+      name = line;
+      break;
+    }
+  }
 
   let amount = 0;
 
   for (let i = 0; i < splits.length; i++) {
-    if (splits[i].search(new RegExp("Total", "i")) == 0) {
-      amount = parseFloat(splits[i].replace(/[^\d.-]/g, ""));
+    const line = splits[i];
+
+    if (line.search(new RegExp("Total", "i")) >= 0) {
+      amount = parseFloat(
+        line.split(new RegExp("Total", "i"))[1].replace(/[^\d.-]/g, "")
+      );
+    }
+
+    if (line.search(new RegExp("Subtotal", "i")) >= 0) {
+      amount = parseFloat(
+        line.split(new RegExp("Subtotal", "i"))[1].replace(/[^\d.-]/g, "")
+      );
+    }
+
+    if (line.search(new RegExp("Balance", "i")) >= 0) {
+      amount = parseFloat(
+        line.split(new RegExp("Balance", "i"))[1].replace(/[^\d.-]/g, "")
+      );
+    }
+
+    if (line.search(new RegExp("Sub-total", "i")) >= 0) {
+      amount = parseFloat(
+        line.split(new RegExp("Sub-total", "i"))[1].replace(/[^\d.-]/g, "")
+      );
+    }
+
+    if (line.search(new RegExp("Amount", "i")) >= 0) {
+      amount = parseFloat(
+        line.split(new RegExp("Amount", "i"))[1].replace(/[^\d.-]/g, "")
+      );
     }
   }
 

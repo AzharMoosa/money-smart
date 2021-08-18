@@ -150,7 +150,7 @@ const Dropzone = ({ history }) => {
         </div>
       </div>
       {uploading && <Loading />}
-      {uploaded && (
+      {uploaded && !uploading && (
         <form className="receipt-input-layout" onSubmit={handleSubmit}>
           <input
             className="receipt-input"

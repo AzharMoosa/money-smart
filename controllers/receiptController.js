@@ -14,6 +14,9 @@ const getUsersReceipts = asyncHandler(async (req, res) => {
   const count = await Receipt.countDocuments({});
 
   if (receipts) {
+    receipts.sort(function (a, b) {
+      return b.createdAt - a.createdAt;
+    });
     res.json({ receipts, page, pages: Math.ceil(count / pageSize) });
   } else {
     res.status(401);
