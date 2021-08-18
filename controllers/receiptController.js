@@ -5,10 +5,16 @@ import Receipt from "../models/Receipt.js";
 // @route       GET /api/receipts
 // @access      Private
 const getUsersReceipts = asyncHandler(async (req, res) => {
-  const receipts = await Receipt.find({ user: req.user._id });
+  const pageSize = 12;
+  const page = Number(req.query.pageNumber) || 1;
+  const receipts = await Receipt.find({ user: req.user._id })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+
+  const count = await Receipt.countDocuments({});
 
   if (receipts) {
-    res.json(receipts);
+    res.json({ receipts, page, pages: Math.ceil(count / pageSize) });
   } else {
     res.status(401);
     throw new Error("Unable To Get Receipts");

@@ -8,8 +8,9 @@ import { Link } from "react-router-dom";
 import RecentTransactionItem from "../components/transactions/RecentTransactionItem";
 import Loading from "../components/loading/Loading";
 import Message from "../components/error/Message";
+import TransactionsPagination from "../components/pagination/TransactionsPagination";
 
-const ReceiptsScreen = () => {
+const ReceiptsScreen = ({ match }) => {
   const dispatch = useDispatch();
 
   const userReceiptsList = useSelector((state) => state.userReceiptsList);
@@ -18,7 +19,11 @@ const ReceiptsScreen = () => {
     loading: loadingGetReceipts,
     receipts,
     error: errorGetReceipts,
+    page,
+    pages,
   } = userReceiptsList;
+
+  const pageNumber = match.params.pageNumber || 1;
 
   const receiptCreate = useSelector((state) => state.receiptCreate);
   const {
@@ -33,9 +38,9 @@ const ReceiptsScreen = () => {
         type: RECEIPT_CREATE_RESET,
       });
     } else {
-      dispatch(getReceipts());
+      dispatch(getReceipts(pageNumber));
     }
-  }, [dispatch, successCreate]);
+  }, [dispatch, successCreate, pageNumber]);
 
   return (
     <Layout>
@@ -65,6 +70,7 @@ const ReceiptsScreen = () => {
                   />
                 </Link>
               ))}
+              <TransactionsPagination pages={pages} page={page} />
             </div>
           </div>
 

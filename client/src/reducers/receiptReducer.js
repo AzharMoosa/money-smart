@@ -50,7 +50,9 @@ export const userReceiptsListReducer = (state = { receipts: [] }, action) => {
     case USER_RECEIPTS_SUCCESS:
       return {
         loading: false,
-        receipts: action.payload,
+        receipts: action.payload.receipts,
+        page: action.payload.page,
+        pages: action.payload.pages,
       };
     case USER_RECEIPTS_FAIL:
       return {

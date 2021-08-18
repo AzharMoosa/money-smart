@@ -77,6 +77,10 @@ function App() {
           component={AddTransactionScreen}
         />
         <PrivateRoute exact path="/receipts" component={ReceiptsScreen} />
+        <PrivateRoute
+          path="/receipts/page/:pageNumber"
+          component={ReceiptsScreen}
+        />
         <PrivateRoute exact path="/settings" component={SettingsScreen} />
         <PrivateRoute
           exact
