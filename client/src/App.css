@@ -131,7 +131,8 @@ a {
   padding-right: 0.5rem;
 }
 
-.error-message {
+.error-message,
+.error-message-green {
   background-color: var(--pink);
   width: 60%;
   margin: 2rem auto;
@@ -142,6 +143,10 @@ a {
   align-items: center;
   font-weight: bold;
   border-radius: 10px;
+}
+
+.error-message-green {
+  background-color: var(--green);
 }
 
 .login-screen,

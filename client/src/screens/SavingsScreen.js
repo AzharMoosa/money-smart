@@ -6,6 +6,7 @@ import SavingsProgressCard from "../components/savings/SavingsProgressCard";
 import { Link } from "react-router-dom";
 import { getSavings } from "../actions/savingActions";
 import Message from "../components/error/Message";
+import SearchResults from "../components/error/SearchResults";
 import Loading from "../components/loading/Loading";
 import SavingsPaginate from "../components/pagination/SavingsPaginate";
 
@@ -85,6 +86,9 @@ const SavingsScreen = ({ match, history }) => {
               />
             </Link>
           ))}
+        {savings != null && savings.length === 0 && (
+          <SearchResults message={"No Savings Found..."} />
+        )}
         <SavingsPaginate
           pages={pages}
           page={page}
