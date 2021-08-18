@@ -54,6 +54,7 @@ export const userTransactionsListReducer = (
       return {
         loading: false,
         transactions: action.payload.transactions,
+        allTransactions: action.payload.allTransactions,
         pages: action.payload.pages,
         page: action.payload.page,
       };

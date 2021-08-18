@@ -19,6 +19,8 @@ const getUsersTransactions = asyncHandler(async (req, res) => {
 
   const count = await Transaction.countDocuments({});
 
+  const allTransactions = await Transaction.find({ user: req.user._id });
+
   if (transactions) {
     transactions.sort(function (a, b) {
       const dateSort = convertDate(b.date) - convertDate(a.date);
@@ -27,7 +29,12 @@ const getUsersTransactions = asyncHandler(async (req, res) => {
       }
       return b.createdAt - a.createdAt;
     });
-    res.json({ transactions, page, pages: Math.ceil(count / pageSize) });
+    res.json({
+      allTransactions,
+      transactions,
+      page,
+      pages: Math.ceil(count / pageSize),
+    });
   } else {
     res.status(401);
     throw new Error("Unable To Get Transactions");

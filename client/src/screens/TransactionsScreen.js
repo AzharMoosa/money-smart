@@ -15,7 +15,8 @@ const TransactionsScreen = ({ match }) => {
     (state) => state.userTransactionsList
   );
 
-  const { loading, transactions, error, page, pages } = userTransactionsList;
+  const { loading, transactions, allTransactions, error, page, pages } =
+    userTransactionsList;
 
   const pageNumber = match.params.pageNumber || 1;
 
@@ -58,7 +59,7 @@ const TransactionsScreen = ({ match }) => {
               <TransactionsPagination pages={pages} page={page} />
             </div>
           </div>
-          <HighestExpenses transactions={transactions} height={905} />
+          <HighestExpenses transactions={allTransactions} height={905} />
         </div>
       </div>
     </Layout>

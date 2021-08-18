@@ -22,7 +22,7 @@ const HomeScreen = () => {
 
   const {
     loading: loadingTransactions,
-    transactions,
+    allTransactions,
     error: errorTransactions,
   } = userTransactionsList;
 
@@ -56,7 +56,7 @@ const HomeScreen = () => {
         !loadingUserLogin &&
         userInfo != null &&
         savings != null &&
-        transactions != null && (
+        allTransactions != null && (
           <div className="home-container">
             <div className="home-title">
               <h1 className="title">Dashboard</h1>
@@ -72,7 +72,7 @@ const HomeScreen = () => {
               <div className="home-left">
                 <div className="monthly-spending-overview">
                   <h3>Monthly Spending</h3>
-                  <LineChart transactions={transactions} />
+                  <LineChart transactions={allTransactions} />
                 </div>
                 <div className="savings-overview">
                   <h3>Savings</h3>
@@ -83,7 +83,7 @@ const HomeScreen = () => {
                   </div>
                 </div>
               </div>
-              <HighestExpenses transactions={transactions} />
+              <HighestExpenses transactions={allTransactions} />
             </div>
           </div>
         )}
