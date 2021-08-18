@@ -7,20 +7,24 @@ import { Link } from "react-router-dom";
 import { getSavings } from "../actions/savingActions";
 import Message from "../components/error/Message";
 import Loading from "../components/loading/Loading";
+import Paginate from "../components/pagination/Paginate";
 
-const SavingsScreen = () => {
+const SavingsScreen = ({ match }) => {
   const dispatch = useDispatch();
 
   const userSavingsList = useSelector((state) => state.userSavingsList);
-  const { savings, error, loading } = userSavingsList;
+  const { savings, error, loading, page, pages } = userSavingsList;
+
+  const keyword = match.params.keyword;
+  const pageNumber = match.params.pageNumber || 1;
 
   const computePercentage = (amountRequired, amountSaved) => {
     return Math.floor((amountSaved / amountRequired) * 100);
   };
 
   useEffect(() => {
-    dispatch(getSavings());
-  }, [dispatch]);
+    dispatch(getSavings(keyword, pageNumber));
+  }, [dispatch, keyword, pageNumber]);
 
   return (
     <Layout>
@@ -59,14 +63,7 @@ const SavingsScreen = () => {
               />
             </Link>
           ))}
-
-        <div className="pagination">
-          <h3>Previous</h3>
-          <div className="pages">
-            <h4>1 | 2 | 3</h4>
-            <h3>Next</h3>
-          </div>
-        </div>
+        <Paginate pages={pages} page={page} keyword={keyword ? keyword : ""} />
       </div>
     </Layout>
   );

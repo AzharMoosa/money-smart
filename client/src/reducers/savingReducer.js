@@ -58,7 +58,9 @@ export const userSavingsListReducer = (state = { savings: [] }, action) => {
     case USER_SAVINGS_SUCCESS:
       return {
         loading: false,
-        savings: action.payload,
+        savings: action.payload.savings,
+        pages: action.payload.pages,
+        page: action.payload.page,
       };
     case USER_SAVINGS_FAIL:
       return {

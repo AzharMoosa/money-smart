@@ -5,10 +5,26 @@ import Saving from "../models/Saving.js";
 // @route       GET /api/savings
 // @access      Private
 const getUsersSavings = asyncHandler(async (req, res) => {
-  const savings = await Saving.find({ user: req.user._id });
+  const pageSize = 4;
+  const page = Number(req.query.pageNumber) || 1;
+
+  const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keywrod,
+          $options: "i",
+        },
+      }
+    : {};
+
+  const count = await Saving.countDocuments({ ...keyword });
+
+  const savings = await Saving.find({ ...keyword, user: req.user._id })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
 
   if (savings) {
-    res.json(savings);
+    res.json({ savings, page, pages: Math.ceil(count / pageSize) });
   } else {
     res.status(401);
     throw new Error("Unable To Get Savings");

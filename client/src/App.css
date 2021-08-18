@@ -94,7 +94,12 @@ body {
 
 .link,
 a {
+  color: inherit !important;
   text-decoration: none;
+}
+
+.currentPage {
+  color: var(--green) !important;
 }
 
 .highlight-pink {
