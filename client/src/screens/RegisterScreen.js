@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { register } from "../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/error/Message";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RegisterScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -23,12 +25,16 @@ const RegisterScreen = ({ history }) => {
     if (userInfo) {
       history.push("/");
     }
-  }, [history, userInfo]);
+    if (error) {
+      toast.dark(error);
+    }
+  }, [history, error, userInfo]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setMessage("Passwords Do Not Match");
+      toast.dark(message);
     } else {
       dispatch(register(firstName, lastName, email, password));
     }
@@ -45,10 +51,18 @@ const RegisterScreen = ({ history }) => {
           </p>
         </div>
 
-        {error && <Message error={error} />}
-        {message && <Message error={message} />}
-
         <div className="signup-box">
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss={false}
+            draggable
+            pauseOnHover={false}
+          />
           <h1>Sign Up</h1>
           <form className="signup-form" onSubmit={handleSubmit}>
             <div className="name-input">
@@ -113,6 +127,7 @@ const RegisterScreen = ({ history }) => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
+
             <button className="btn-large" type="submit">
               Sign Up
             </button>
