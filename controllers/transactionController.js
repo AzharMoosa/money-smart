@@ -10,7 +10,14 @@ const convertDate = (dateGiven) => {
 // @route       GET /api/transactions
 // @access      Private
 const getUsersTransactions = asyncHandler(async (req, res) => {
-  const transactions = await Transaction.find({ user: req.user._id });
+  const pageSize = 12;
+  const page = Number(req.query.pageNumber) || 1;
+
+  const transactions = await Transaction.find({ user: req.user._id })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+
+  const count = await Transaction.countDocuments({});
 
   if (transactions) {
     transactions.sort(function (a, b) {
@@ -20,7 +27,7 @@ const getUsersTransactions = asyncHandler(async (req, res) => {
       }
       return b.createdAt - a.createdAt;
     });
-    res.json(transactions);
+    res.json({ transactions, page, pages: Math.ceil(count / pageSize) });
   } else {
     res.status(401);
     throw new Error("Unable To Get Transactions");

@@ -17,38 +17,43 @@ import {
 } from "../constants/transactionConstants";
 import axios from "axios";
 
-export const getTransactions = () => async (dispatch, getState) => {
-  try {
-    dispatch({
-      type: USER_TRANSACTIONS_GET_REQUEST,
-    });
+export const getTransactions =
+  (pageNumber = "") =>
+  async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: USER_TRANSACTIONS_GET_REQUEST,
+      });
 
-    const {
-      userLogin: { userInfo },
-    } = getState();
+      const {
+        userLogin: { userInfo },
+      } = getState();
 
-    const config = {
-      headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
 
-    const { data } = await axios.get(`/api/transactions`, config);
+      const { data } = await axios.get(
+        `/api/transactions?pageNumber=${pageNumber}`,
+        config
+      );
 
-    dispatch({
-      type: USER_TRANSACTIONS_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: USER_TRANSACTIONS_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
+      dispatch({
+        type: USER_TRANSACTIONS_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: USER_TRANSACTIONS_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 export const getTransaction = (id) => async (dispatch, getState) => {
   try {

@@ -7,19 +7,21 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/error/Message";
 import Loading from "../components/loading/Loading";
 import { getTransactions } from "../actions/transactionActions";
-
-const TransactionsScreen = () => {
+import TransactionsPagination from "../components/pagination/TransactionsPagination";
+const TransactionsScreen = ({ match }) => {
   const dispatch = useDispatch();
 
   const userTransactionsList = useSelector(
     (state) => state.userTransactionsList
   );
 
-  const { loading, transactions, error } = userTransactionsList;
+  const { loading, transactions, error, page, pages } = userTransactionsList;
+
+  const pageNumber = match.params.pageNumber || 1;
 
   useEffect(() => {
-    dispatch(getTransactions());
-  }, [dispatch]);
+    dispatch(getTransactions(pageNumber));
+  }, [dispatch, pageNumber]);
 
   return (
     <Layout>
@@ -53,6 +55,7 @@ const TransactionsScreen = () => {
                   />
                 </Link>
               ))}
+              <TransactionsPagination pages={pages} page={page} />
             </div>
           </div>
           <HighestExpenses transactions={transactions} height={905} />

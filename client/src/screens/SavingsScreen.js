@@ -20,7 +20,6 @@ const SavingsScreen = ({ match, history }) => {
   const pageNumber = match.params.pageNumber || 1;
   const sort = match.params.sort || 0;
 
-  console.log(sort);
   const [searchTerm, setSearchTerm] = useState("");
 
   const computePercentage = (amountRequired, amountSaved) => {

@@ -63,6 +63,10 @@ function App() {
           component={TransactionsScreen}
         />
         <PrivateRoute
+          path="/transactions/page/:pageNumber"
+          component={TransactionsScreen}
+        />
+        <PrivateRoute
           exact
           path="/transactions/:id"
           component={TransactionInfoScreen}

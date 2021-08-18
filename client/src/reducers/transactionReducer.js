@@ -53,7 +53,9 @@ export const userTransactionsListReducer = (
     case USER_TRANSACTIONS_SUCCESS:
       return {
         loading: false,
-        transactions: action.payload,
+        transactions: action.payload.transactions,
+        pages: action.payload.pages,
+        page: action.payload.page,
       };
     case USER_TRANSACTIONS_FAIL:
       return {

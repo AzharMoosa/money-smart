@@ -1,20 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SavingsPagination = ({ pages, page, keyword = "" }) => {
+const TransactionsPagination = ({ pages, page }) => {
   return (
     pages > 1 && (
       <>
         <div className="pagination">
           <Link
             className={`link`}
-            to={
-              page > 1
-                ? keyword
-                  ? `/savings/search/${keyword}/page/${page - 1}`
-                  : `/savings/page/${page - 1}`
-                : "/savings"
-            }
+            to={page > 1 ? `/transactions/page/${page - 1}` : "/transactions"}
           >
             <h3>{page > 1 ? "Previous" : ""}</h3>
           </Link>
@@ -23,11 +17,7 @@ const SavingsPagination = ({ pages, page, keyword = "" }) => {
               <Link
                 className={`link ${page === x + 1 ? "currentPage" : ""}`}
                 key={x + 1}
-                to={
-                  keyword
-                    ? `/savings/search/${keyword}/page/${x + 1}`
-                    : `/savings/page/${x + 1}`
-                }
+                to={`/transactions/page/${x + 1}`}
               >
                 <h4>{x + 1}</h4>
               </Link>
@@ -36,10 +26,8 @@ const SavingsPagination = ({ pages, page, keyword = "" }) => {
               className={`link`}
               to={
                 page < pages
-                  ? keyword
-                    ? `/savings/search/${keyword}/page/${page + 1}`
-                    : `/savings/page/${page + 1}`
-                  : "/savings"
+                  ? `/transactions/page/${page + 1}`
+                  : "/transactions"
               }
             >
               <h3>{page < pages ? "Next" : ""}</h3>
@@ -51,4 +39,4 @@ const SavingsPagination = ({ pages, page, keyword = "" }) => {
   );
 };
 
-export default SavingsPagination;
+export default TransactionsPagination;
