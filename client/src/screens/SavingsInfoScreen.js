@@ -44,7 +44,10 @@ const SavingsInfoScreen = ({ match, history }) => {
   }, [history, successDelete, dispatch, savingId, saving]);
 
   const computePercentage = (amountRequired, amountSaved) => {
-    return Math.floor((amountSaved / amountRequired) * TOTAL_PERCENTAGE);
+    const percentage = Math.floor(
+      (amountSaved / amountRequired) * TOTAL_PERCENTAGE
+    );
+    return percentage > TOTAL_PERCENTAGE ? TOTAL_PERCENTAGE : percentage;
   };
 
   const deleteSavingHandler = (name, id) => {
@@ -154,11 +157,21 @@ const SavingsInfoScreen = ({ match, history }) => {
                 />
                 <div className="savings-info-progress-saved">
                   <h3>Current Saved</h3>
-                  <h4>£ {saving.amountSaved}</h4>
+                  <h4>
+                    £
+                    {saving.amountSaved > saving.amountRequired
+                      ? saving.amountRequired
+                      : saving.amountSaved}
+                  </h4>
                 </div>
                 <div className="savings-info-progress-left">
                   <h3>Amount Left</h3>
-                  <h4>£ {saving.amountRequired - saving.amountSaved}</h4>
+                  <h4>
+                    £
+                    {saving.amountSaved > saving.amountRequired
+                      ? 0
+                      : saving.amountRequired - saving.amountSaved}
+                  </h4>
                 </div>
                 <div className="savings-info-progress-total">
                   <h3>Total Required</h3>

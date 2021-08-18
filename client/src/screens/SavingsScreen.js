@@ -23,7 +23,8 @@ const SavingsScreen = ({ match, history }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const computePercentage = (amountRequired, amountSaved) => {
-    return Math.floor((amountSaved / amountRequired) * 100);
+    const percentage = Math.floor((amountSaved / amountRequired) * 100);
+    return percentage > 100 ? 100 : percentage;
   };
 
   const searchHandler = (e) => {
