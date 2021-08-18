@@ -650,7 +650,25 @@ option {
   margin-top: 0.5rem;
 }
 
-.pagination h3 {
+.history-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--black);
+  margin-top: 0.5rem;
+  padding: 0 1rem;
+}
+
+.history-pagination h3 {
+  font-size: 16px !important;
+  text-transform: none !important;
+  color: var(--black) !important;
+}
+
+.pagination h3,
+.history-pagination h3 {
   cursor: pointer;
 }
 

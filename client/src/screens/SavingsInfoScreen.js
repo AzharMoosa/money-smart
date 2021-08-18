@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/layout/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteSaving, getSaving } from "../actions/savingActions";
@@ -12,7 +12,11 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import { SAVING_DELETE_RESET } from "../constants/savingConstants";
 
 const SavingsInfoScreen = ({ match, history }) => {
+  const savingId = match.params.id;
   const dispatch = useDispatch();
+  const PAGE_SIZE = 4;
+  const [historyPage, setHistoryPage] = useState(1);
+  const [pages, setPages] = useState(0);
 
   const savingDetails = useSelector((state) => state.savingDetails);
   const { saving, loading, error } = savingDetails;
@@ -32,10 +36,12 @@ const SavingsInfoScreen = ({ match, history }) => {
         type: SAVING_DELETE_RESET,
       });
       history.push("/savings");
+    } else if (!saving || !saving.name || saving._id !== savingId) {
+      dispatch(getSaving(savingId));
     } else {
-      dispatch(getSaving(match.params.id));
+      setPages(saving.history.length / PAGE_SIZE);
     }
-  }, [history, successDelete, dispatch, match]);
+  }, [history, successDelete, dispatch, savingId, saving]);
 
   const computePercentage = (amountRequired, amountSaved) => {
     return Math.floor((amountSaved / amountRequired) * TOTAL_PERCENTAGE);
@@ -58,6 +64,10 @@ const SavingsInfoScreen = ({ match, history }) => {
         },
       ],
     });
+  };
+
+  const paginate = (array) => {
+    return array.slice((historyPage - 1) * PAGE_SIZE, historyPage * PAGE_SIZE);
   };
 
   return (
@@ -162,7 +172,7 @@ const SavingsInfoScreen = ({ match, history }) => {
               <div className="savings-info-history">
                 <h3>History</h3>
                 <div className="savings-info-history-list">
-                  {saving.history.slice(0, 5).map((transaction) => (
+                  {paginate(saving.history).map((transaction) => (
                     <div
                       key={transaction._id}
                       className="savings-info-history-item"
@@ -171,6 +181,19 @@ const SavingsInfoScreen = ({ match, history }) => {
                       <h3>£ {transaction.amount}</h3>
                     </div>
                   ))}
+                  {pages > 1 && (
+                    <>
+                      <div className="history-pagination">
+                        <h3 onClick={() => setHistoryPage(historyPage - 1)}>
+                          {historyPage > 1 ? "Previous" : ""}
+                        </h3>
+
+                        <h3 onClick={() => setHistoryPage(historyPage + 1)}>
+                          {historyPage < pages ? "Next" : ""}
+                        </h3>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
               <div className="savings-info-info">
