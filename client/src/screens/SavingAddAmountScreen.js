@@ -3,7 +3,10 @@ import Layout from "../components/layout/Layout";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { addAmountToSaving } from "../actions/savingActions";
-import { SAVING_ADD_AMOUNT_RESET } from "../constants/savingConstants";
+import {
+  SAVING_ADD_AMOUNT_RESET,
+  SAVING_GET_RESET,
+} from "../constants/savingConstants";
 import Loading from "../components/loading/Loading";
 import Message from "../components/error/Message";
 
@@ -23,6 +26,7 @@ const SavingAddAmountScreen = ({ match, history }) => {
   useEffect(() => {
     if (successAddAmount) {
       dispatch({ type: SAVING_ADD_AMOUNT_RESET });
+      dispatch({ type: SAVING_GET_RESET });
       history.push(`/savings/${savingId}`);
     }
   }, [dispatch, successAddAmount, history, savingId]);

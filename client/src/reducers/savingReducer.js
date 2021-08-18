@@ -25,6 +25,8 @@ import {
   USER_SAVINGS_FAIL,
   USER_SAVINGS_GET_REQUEST,
   USER_SAVINGS_SUCCESS,
+  USER_SAVINGS_RESET,
+  SAVING_GET_RESET,
 } from "../constants/savingConstants";
 
 export const savingDetailsReducer = (state = {}, action) => {
@@ -43,6 +45,8 @@ export const savingDetailsReducer = (state = {}, action) => {
         loading: false,
         error: action.payload,
       };
+    case SAVING_GET_RESET:
+      return {};
     default:
       return state;
   }
@@ -67,6 +71,8 @@ export const userSavingsListReducer = (state = { savings: [] }, action) => {
         loading: false,
         error: action.payload,
       };
+    case USER_SAVINGS_RESET:
+      return {};
     default:
       return state;
   }
