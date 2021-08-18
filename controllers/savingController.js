@@ -11,7 +11,7 @@ const getUsersSavings = asyncHandler(async (req, res) => {
   const keyword = req.query.keyword
     ? {
         name: {
-          $regex: req.query.keywrod,
+          $regex: req.query.keyword,
           $options: "i",
         },
       }

@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../components/layout/Layout";
-import { FaSortAmountUp } from "react-icons/fa";
+import { FaSortAmountUp, FaSearch } from "react-icons/fa";
 import SavingsProgressCard from "../components/savings/SavingsProgressCard";
 import { Link } from "react-router-dom";
 import { getSavings } from "../actions/savingActions";
 import Message from "../components/error/Message";
 import Loading from "../components/loading/Loading";
-import Paginate from "../components/pagination/Paginate";
+import SavingsPaginate from "../components/pagination/SavingsPaginate";
 
-const SavingsScreen = ({ match }) => {
+const SavingsScreen = ({ match, history }) => {
   const dispatch = useDispatch();
 
   const userSavingsList = useSelector((state) => state.userSavingsList);
@@ -18,8 +18,19 @@ const SavingsScreen = ({ match }) => {
   const keyword = match.params.keyword;
   const pageNumber = match.params.pageNumber || 1;
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   const computePercentage = (amountRequired, amountSaved) => {
     return Math.floor((amountSaved / amountRequired) * 100);
+  };
+
+  const searchHandler = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      history.push(`/savings/search/${searchTerm}`);
+    } else {
+      history.push(`/savings`);
+    }
   };
 
   useEffect(() => {
@@ -38,7 +49,18 @@ const SavingsScreen = ({ match }) => {
           <Link to="/savings/create">
             <button className="btn-small-dark">New</button>
           </Link>
-          <input type="text" placeholder="Search.."></input>
+          <form onSubmit={searchHandler} className="search-savings">
+            <input
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="search-box"
+              type="text"
+              placeholder="Search.."
+            />
+            <button type="submit">
+              <FaSearch />
+            </button>
+          </form>
           <div className="filter-icon">
             <FaSortAmountUp />
             <h3>Filter</h3>
@@ -46,7 +68,7 @@ const SavingsScreen = ({ match }) => {
         </div>
 
         {!loading &&
-          savings.length > 0 &&
+          savings != null &&
           savings.map((saving) => (
             <Link
               key={saving._id}
@@ -63,7 +85,11 @@ const SavingsScreen = ({ match }) => {
               />
             </Link>
           ))}
-        <Paginate pages={pages} page={page} keyword={keyword ? keyword : ""} />
+        <SavingsPaginate
+          pages={pages}
+          page={page}
+          keyword={keyword ? keyword : ""}
+        />
       </div>
     </Layout>
   );

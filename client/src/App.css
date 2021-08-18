@@ -591,18 +591,6 @@ option {
   align-items: center;
 }
 
-.savings-nav input {
-  width: 580px;
-  height: 32px;
-  background-color: var(--secondary-bg);
-  border: none;
-  outline: none;
-  padding: 0 1rem;
-  border-radius: 23px;
-  font-size: 15px;
-  color: var(--dark);
-}
-
 .filter-icon {
   display: flex;
   align-items: center;
@@ -1141,4 +1129,39 @@ option {
 
 .btn-add {
   margin-top: 1rem;
+}
+
+.search-savings {
+  display: inline-block;
+  position: relative;
+}
+
+.search-box {
+  width: 580px;
+  height: 32px;
+  background-color: var(--secondary-bg);
+  border: none;
+  outline: none;
+  padding: 0 1rem;
+  border-radius: 23px;
+  font-size: 15px;
+  color: var(--dark);
+  flex: 1;
+}
+
+.search-box:focus {
+  outline: none;
+}
+
+.search-savings button {
+  position: absolute;
+  font-size: 14px;
+  color: var(--dark);
+  top: 7px;
+  right: 0;
+  width: 3.5rem;
+  background-color: var(--secondary-bg);
+  border: none;
+  outline: none;
+  border-radius: 23px;
 }
