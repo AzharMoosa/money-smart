@@ -18,7 +18,9 @@ const SavingsScreen = ({ match, history }) => {
 
   const keyword = match.params.keyword;
   const pageNumber = match.params.pageNumber || 1;
+  const sort = match.params.sort || 0;
 
+  console.log(sort);
   const [searchTerm, setSearchTerm] = useState("");
 
   const computePercentage = (amountRequired, amountSaved) => {
@@ -35,8 +37,8 @@ const SavingsScreen = ({ match, history }) => {
   };
 
   useEffect(() => {
-    dispatch(getSavings(keyword, pageNumber));
-  }, [dispatch, keyword, pageNumber]);
+    dispatch(getSavings(keyword, pageNumber, sort));
+  }, [dispatch, keyword, pageNumber, sort]);
 
   return (
     <Layout>
@@ -62,10 +64,12 @@ const SavingsScreen = ({ match, history }) => {
               <FaSearch />
             </button>
           </form>
-          <div className="filter-icon">
-            <FaSortAmountUp />
-            <h3>Filter</h3>
-          </div>
+          <Link to={`/savings/sort/${1 - sort}`}>
+            <div className="filter-icon">
+              <FaSortAmountUp />
+              <h3>Sort</h3>
+            </div>
+          </Link>
         </div>
 
         {!loading &&

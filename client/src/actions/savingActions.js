@@ -24,7 +24,7 @@ import {
 import axios from "axios";
 
 export const getSavings =
-  (keyword = "", pageNumber = "") =>
+  (keyword = "", pageNumber = "", sort = "") =>
   async (dispatch, getState) => {
     try {
       dispatch({
@@ -42,7 +42,7 @@ export const getSavings =
       };
 
       const { data } = await axios.get(
-        `/api/savings?keyword=${keyword}&pageNumber=${pageNumber}`,
+        `/api/savings?keyword=${keyword}&pageNumber=${pageNumber}&sort=${sort}`,
         config
       );
 

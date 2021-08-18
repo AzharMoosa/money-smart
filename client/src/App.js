@@ -25,6 +25,11 @@ function App() {
         <PrivateRoute exact path="/savings" component={SavingsScreen} />
         <PrivateRoute
           exact
+          path="/savings/sort/:sort"
+          component={SavingsScreen}
+        />
+        <PrivateRoute
+          exact
           path="/savings/search/:keyword"
           component={SavingsScreen}
         />

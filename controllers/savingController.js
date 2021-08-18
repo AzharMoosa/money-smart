@@ -7,6 +7,7 @@ import Saving from "../models/Saving.js";
 const getUsersSavings = asyncHandler(async (req, res) => {
   const pageSize = 4;
   const page = Number(req.query.pageNumber) || 1;
+  const ASC = Number(req.query.sort) || 0;
 
   const keyword = req.query.keyword
     ? {
@@ -20,6 +21,7 @@ const getUsersSavings = asyncHandler(async (req, res) => {
   const count = await Saving.countDocuments({ ...keyword });
 
   const savings = await Saving.find({ ...keyword, user: req.user._id })
+    .sort({ amountRequired: ASC ? 1 : -1 })
     .limit(pageSize)
     .skip(pageSize * (page - 1));
 
