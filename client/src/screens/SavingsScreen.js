@@ -91,7 +91,7 @@ const SavingsScreen = ({ match, history }) => {
             </Link>
           ))}
         {savings != null && savings.length === 0 && (
-          <SearchResults message={"No Savings Found..."} />
+          <SearchResults message={"No Savings Found"} />
         )}
         <SavingsPaginate
           pages={pages}

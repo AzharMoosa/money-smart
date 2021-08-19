@@ -4,9 +4,10 @@ import { FaGoogle } from "react-icons/fa";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../actions/userActions";
+import { login, loginWithGoogle } from "../actions/userActions";
 import { useEffect } from "react";
 import Message from "../components/error/Message";
+import { GoogleLogin } from "react-google-login";
 
 const LoginScreen = ({ history }) => {
   const [email, setEmail] = useState("");
@@ -15,6 +16,12 @@ const LoginScreen = ({ history }) => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { error, userInfo } = userLogin;
+
+  const responseGoogle = async (response) => {
+    const { profileObj } = response;
+    const { givenName: firstName, familyName: lastName, email } = profileObj;
+    dispatch(loginWithGoogle(firstName, lastName, email));
+  };
 
   useEffect(() => {
     if (userInfo) {
@@ -62,10 +69,24 @@ const LoginScreen = ({ history }) => {
             <button type="submit" className="btn-large">
               Log In
             </button>
-            <button type="button" className="btn-large-dark">
-              <FaGoogle />
-              <span>Log In With Google</span>
-            </button>
+
+            <GoogleLogin
+              clientId="920897221114-hprngnslhfg5uq0dlhqjdem6q8dkqslq.apps.googleusercontent.com"
+              render={(renderProps) => (
+                <button
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                  type="button"
+                  className="btn-large-dark"
+                >
+                  <FaGoogle />
+                  <span>Log In With Google</span>
+                </button>
+              )}
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={"single_host_origin"}
+            />
           </form>
 
           {error && <Message error={error} />}

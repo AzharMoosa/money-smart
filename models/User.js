@@ -18,7 +18,6 @@ const UserSchema = mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
     },
     age: {
       type: Number,
@@ -28,6 +27,9 @@ const UserSchema = mongoose.Schema(
     },
     retirementAge: {
       type: Number,
+    },
+    googleId: {
+      type: String,
     },
   },
   {

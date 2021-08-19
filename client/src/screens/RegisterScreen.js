@@ -3,11 +3,11 @@ import { FaGoogle } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import PasswordStrengthBar from "react-password-strength-bar";
 import { Link } from "react-router-dom";
-import { register } from "../actions/userActions";
+import { register, loginWithGoogle } from "../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/error/Message";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { GoogleLogin } from "react-google-login";
 
 const RegisterScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -21,14 +21,29 @@ const RegisterScreen = ({ history }) => {
   const userRegister = useSelector((state) => state.userRegister);
   const { error, userInfo } = userRegister;
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { error: errorLogin, userInfo: googleLogin } = userLogin;
+
+  const responseGoogle = async (response) => {
+    const { profileObj } = response;
+    const { givenName: firstName, familyName: lastName, email } = profileObj;
+    dispatch(loginWithGoogle(firstName, lastName, email));
+  };
+
   useEffect(() => {
     if (userInfo) {
+      history.push("/");
+    }
+    if (googleLogin) {
       history.push("/");
     }
     if (error) {
       toast.dark(error);
     }
-  }, [history, error, userInfo]);
+    if (errorLogin) {
+      toast.dark(errorLogin);
+    }
+  }, [history, error, userInfo, errorLogin, googleLogin]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -131,10 +146,23 @@ const RegisterScreen = ({ history }) => {
             <button className="btn-large" type="submit">
               Sign Up
             </button>
-            <button className="btn-large-dark" type="submit">
-              <FaGoogle />
-              <span>Sign Up With Google</span>
-            </button>
+            <GoogleLogin
+              clientId="920897221114-hprngnslhfg5uq0dlhqjdem6q8dkqslq.apps.googleusercontent.com"
+              render={(renderProps) => (
+                <button
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                  type="button"
+                  className="btn-large-dark"
+                >
+                  <FaGoogle />
+                  <span>Log In With Google</span>
+                </button>
+              )}
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={"single_host_origin"}
+            />
           </form>
 
           <div className="signup-box-footer">

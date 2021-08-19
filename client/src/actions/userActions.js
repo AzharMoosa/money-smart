@@ -58,6 +58,42 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
+export const loginWithGoogle =
+  (firstName, lastName, email) => async (dispatch) => {
+    try {
+      dispatch({
+        type: USER_LOGIN_REQUEST,
+      });
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      const { data } = await axios.post(
+        "/auth/google",
+        { firstName, lastName, email },
+        config
+      );
+
+      dispatch({
+        type: USER_LOGIN_SUCCESS,
+        payload: data,
+      });
+
+      localStorage.setItem("userInfo", JSON.stringify(data));
+    } catch (error) {
+      dispatch({
+        type: USER_LOGIN_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+
 export const register =
   (firstName, lastName, email, password) => async (dispatch) => {
     try {
