@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../actions/userActions";
 import LogoImage from "../../img/logo_img.png";
+
 const Sidebar = () => {
   const dispatch = useDispatch();
 

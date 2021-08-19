@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GoogleLogin } from "react-google-login";
+import axios from "axios";
 
 const RegisterScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const RegisterScreen = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [clientId, setClientId] = useState();
 
   const userRegister = useSelector((state) => state.userRegister);
   const { error, userInfo } = userRegister;
@@ -31,6 +33,15 @@ const RegisterScreen = ({ history }) => {
   };
 
   useEffect(() => {
+    const addGoogleClientId = async () => {
+      const { data } = await axios.get("/api/config/google");
+      setClientId(data);
+    };
+
+    if (!clientId) {
+      addGoogleClientId();
+    }
+
     if (userInfo) {
       history.push("/");
     }
@@ -43,7 +54,7 @@ const RegisterScreen = ({ history }) => {
     if (errorLogin) {
       toast.dark(errorLogin);
     }
-  }, [history, error, userInfo, errorLogin, googleLogin]);
+  }, [history, clientId, error, userInfo, errorLogin, googleLogin]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -146,23 +157,25 @@ const RegisterScreen = ({ history }) => {
             <button className="btn-large" type="submit">
               Sign Up
             </button>
-            <GoogleLogin
-              clientId="920897221114-hprngnslhfg5uq0dlhqjdem6q8dkqslq.apps.googleusercontent.com"
-              render={(renderProps) => (
-                <button
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
-                  type="button"
-                  className="btn-large-dark"
-                >
-                  <FaGoogle />
-                  <span>Log In With Google</span>
-                </button>
-              )}
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={"single_host_origin"}
-            />
+            {clientId && (
+              <GoogleLogin
+                clientId={`${clientId}`}
+                render={(renderProps) => (
+                  <button
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                    type="button"
+                    className="btn-large-dark"
+                  >
+                    <FaGoogle />
+                    <span>Log In With Google</span>
+                  </button>
+                )}
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={"single_host_origin"}
+              />
+            )}
           </form>
 
           <div className="signup-box-footer">

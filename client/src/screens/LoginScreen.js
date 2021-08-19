@@ -8,10 +8,12 @@ import { login, loginWithGoogle } from "../actions/userActions";
 import { useEffect } from "react";
 import Message from "../components/error/Message";
 import { GoogleLogin } from "react-google-login";
+import axios from "axios";
 
 const LoginScreen = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [clientId, setClientId] = useState();
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -27,7 +29,16 @@ const LoginScreen = ({ history }) => {
     if (userInfo) {
       history.push("/");
     }
-  }, [history, userInfo]);
+
+    const addGoogleClientId = async () => {
+      const { data } = await axios.get("/api/config/google");
+      setClientId(data);
+    };
+
+    if (!clientId) {
+      addGoogleClientId();
+    }
+  }, [history, clientId, userInfo]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,24 +80,25 @@ const LoginScreen = ({ history }) => {
             <button type="submit" className="btn-large">
               Log In
             </button>
-
-            <GoogleLogin
-              clientId="920897221114-hprngnslhfg5uq0dlhqjdem6q8dkqslq.apps.googleusercontent.com"
-              render={(renderProps) => (
-                <button
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
-                  type="button"
-                  className="btn-large-dark"
-                >
-                  <FaGoogle />
-                  <span>Log In With Google</span>
-                </button>
-              )}
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={"single_host_origin"}
-            />
+            {clientId && (
+              <GoogleLogin
+                clientId={`${clientId}`}
+                render={(renderProps) => (
+                  <button
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                    type="button"
+                    className="btn-large-dark"
+                  >
+                    <FaGoogle />
+                    <span>Log In With Google</span>
+                  </button>
+                )}
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={"single_host_origin"}
+              />
+            )}
           </form>
 
           {error && <Message error={error} />}

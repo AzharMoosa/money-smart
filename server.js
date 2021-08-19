@@ -29,6 +29,10 @@ app.use("/api/receipts", receiptsRoute);
 app.use("/api/upload", uploadRoute);
 
 // Sign In With Google
+app.get("/api/config/google", (req, res) =>
+  res.send(process.env.GOOGLE_CLIENT_ID)
+);
+
 app.post("/auth/google", async (req, res) => {
   const { firstName, lastName, email } = req.body;
 
