@@ -1,7 +1,7 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
 
-const HighestExpenses = ({ height, transactions }) => {
+const HighestExpenses = ({ transactions }) => {
   const computeData = (isLabel) => {
     const groups = transactions.reduce((groups, transaction) => {
       const type = transaction.type;
@@ -51,7 +51,7 @@ const HighestExpenses = ({ height, transactions }) => {
     ],
   };
   return (
-    <div style={{ height: height }} className="highest-expense-overview">
+    <div className="highest-expense-overview">
       <h3>Highest Expenses</h3>
       <Pie
         height={426}
@@ -78,7 +78,6 @@ const HighestExpenses = ({ height, transactions }) => {
 };
 
 HighestExpenses.defaultProps = {
-  height: 858,
   transactions: [],
 };
 

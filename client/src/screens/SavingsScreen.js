@@ -72,27 +72,29 @@ const SavingsScreen = ({ match, history }) => {
           </Link>
         </div>
 
-        {!loading &&
-          savings != null &&
-          savings.map((saving) => (
-            <Link
-              key={saving._id}
-              className="link"
-              to={`/savings/${saving._id}`}
-            >
-              <SavingsProgressCard
-                title={saving.name}
-                amount={saving.amountRequired}
-                percentage={computePercentage(
-                  saving.amountRequired,
-                  saving.amountSaved
-                )}
-              />
-            </Link>
-          ))}
-        {savings != null && savings.length === 0 && (
-          <SearchResults message={"No Savings Found"} />
-        )}
+        <div className="savings-list">
+          {!loading &&
+            savings != null &&
+            savings.map((saving) => (
+              <Link
+                key={saving._id}
+                className="link"
+                to={`/savings/${saving._id}`}
+              >
+                <SavingsProgressCard
+                  title={saving.name}
+                  amount={saving.amountRequired}
+                  percentage={computePercentage(
+                    saving.amountRequired,
+                    saving.amountSaved
+                  )}
+                />
+              </Link>
+            ))}
+          {savings != null && savings.length === 0 && (
+            <SearchResults message={"No Savings Found"} />
+          )}
+        </div>
         <SavingsPaginate
           pages={pages}
           page={page}

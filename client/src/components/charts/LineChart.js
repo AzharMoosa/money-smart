@@ -102,6 +102,7 @@ const LineChart = ({ transactions }) => {
       },
     },
   };
+
   return (
     <>
       <Line data={data} options={options} height={270.5} width={834.5} />

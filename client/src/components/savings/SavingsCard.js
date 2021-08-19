@@ -4,9 +4,9 @@ import { Doughnut } from "react-chartjs-2";
 const SavingsCard = ({ saving }) => {
   const TOTAL_PERCENTAGE = 100;
   const computePercentage = (amountRequired, amountSaved) => {
-    return Math.floor((amountSaved / amountRequired) * TOTAL_PERCENTAGE);
+    const percentage = Math.floor((amountSaved / amountRequired) * 100);
+    return percentage > 100 ? 100 : percentage;
   };
-
   return (
     <div className="savings-card">
       <h3>{saving.name}</h3>

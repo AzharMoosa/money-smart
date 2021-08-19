@@ -120,7 +120,7 @@ a {
 .progress-bar {
   position: relative;
   height: 38px;
-  width: 1376px;
+  width: 100%;
   border-radius: 10px;
   background-color: var(--dark);
   border: 1px solid var(--dark);
@@ -290,7 +290,7 @@ option {
   border-radius: 12px;
   border: none;
   margin-top: 0.8rem;
-  width: 1386px;
+  width: 100%;
   height: 153px;
   outline: none;
   padding: 0.5rem 1rem;
@@ -455,9 +455,9 @@ option {
 .sidebar-items {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 70%;
+  height: 428px;
+  margin-top: 5rem;
 }
 
 .sidebar-item {
@@ -568,7 +568,7 @@ option {
   color: var(--primary-bg);
 }
 
-.highest-expense-overview {
+.home-data-overview .highest-expense-overview {
   width: 483px;
   height: 858px;
   background-color: var(--secondary-bg);
@@ -581,8 +581,22 @@ option {
   align-items: center;
 }
 
+.transactions-dashboard .highest-expense-overview {
+  width: 483px;
+  height: 905px;
+  background-color: var(--secondary-bg);
+  border-radius: 22px;
+  padding: 1rem;
+  margin-left: 3rem;
+  color: var(--primary-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .home-data-overview {
   display: flex;
+  justify-content: center;
   margin-top: 3rem;
 }
 
@@ -640,6 +654,12 @@ option {
   font-size: 15px;
   font-weight: bold;
   margin-left: 0.5rem;
+}
+
+.savings-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .savings-progress {
@@ -720,11 +740,12 @@ option {
 .settings-dashboard {
   display: flex;
   margin-top: 2rem;
+  justify-content: center;
 }
 
 .recent-transactions,
 .settings-items {
-  width: 982px;
+  width: 100%;
   height: 905px;
   background-color: var(--secondary-bg);
   border-radius: 22px;
@@ -815,7 +836,7 @@ option {
 }
 
 .settings-button {
-  width: 875px;
+  width: 100%;
   height: 52px;
   background-color: var(--primary-bg);
   border-radius: 9px;
@@ -951,14 +972,14 @@ option {
 }
 
 .add-transaction {
-  width: 1488px;
+  width: 100%;
   height: 886px;
   background-color: var(--secondary-bg);
   border-radius: 22px;
 }
 
 .receipt-info {
-  width: 1488px;
+  width: 100%;
   height: 700px;
   background-color: var(--secondary-bg);
   border-radius: 22px;
@@ -969,7 +990,7 @@ option {
 }
 
 .add-amount {
-  width: 1488px;
+  width: 100%;
   height: 400px;
   background-color: var(--secondary-bg);
   border-radius: 22px;
@@ -980,7 +1001,7 @@ option {
 }
 
 .user-info-form {
-  width: 1488px;
+  width: 100%;
   height: 600px;
   background-color: var(--secondary-bg);
   border-radius: 22px;
@@ -991,7 +1012,7 @@ option {
 }
 
 .user-account-form {
-  width: 1488px;
+  width: 100%;
   height: 800px;
   background-color: var(--secondary-bg);
   border-radius: 22px;
@@ -1242,14 +1263,99 @@ option {
   border-radius: 23px;
 }
 
-@media screen and (max-width: 2560px) and (min-width: 1920px) {
+@media screen and (max-width: 1919px) {
+  /* Sidebar */
+
+  .sidebar {
+    width: 336px;
+    min-height: 100vh;
+    background-color: var(--secondary-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    position: relative;
+  }
+
+  .sidebar-logo {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+  }
+
+  .sidebar-logo h2 {
+    font-size: 30px;
+    margin-left: 1.5rem;
+    font-weight: bold;
+    color: var(--dark);
+  }
+
+  .sidebar-logo img {
+    width: 64px;
+    height: 41px;
+  }
+
+  .sidebar-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 70%;
+  }
+
+  .sidebar-item {
+    background-color: var(--primary-bg);
+    width: 228px;
+    height: 52px;
+    margin: 1rem 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 9px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Lato", sans-serif;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    text-transform: uppercase;
+    color: var(--dark);
+  }
+  .sidebar-item-px {
+    padding-left: 0.2rem;
+  }
+
+  .sidebar-img {
+    width: 40px;
+    margin-right: 1.3rem;
+  }
+
+  .sign-out-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--dark);
+    padding: 0 1rem 0.6rem 0;
+    cursor: pointer;
+  }
+
+  .sign-out-btn h2 {
+    font-size: 15px;
+    margin-right: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  /* Dashboard */
+
   .home-container,
   .savings-screen-container,
   .transactions-screen-container,
   .receipts-screen-container,
   .settings-screen-container,
   .savings-info-container {
-    width: 95%;
+    width: 90%;
     margin: 1rem auto;
     display: flex;
     flex-direction: column;
@@ -1264,14 +1370,14 @@ option {
   }
 
   .title {
-    font-size: 70px;
+    font-size: 60px;
     font-weight: bold;
     color: var(--black);
     text-transform: uppercase;
   }
 
   .user-icon h3 {
-    font-size: 30px;
+    font-size: 25px;
     color: var(--black);
     text-transform: uppercase;
   }
@@ -1302,21 +1408,14 @@ option {
     color: var(--primary-bg);
   }
 
-  .highest-expense-overview {
-    width: 483px;
-    height: 858px;
-    background-color: var(--secondary-bg);
-    border-radius: 22px;
-    padding: 1rem;
-    margin-left: 3rem;
-    color: var(--primary-bg);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .home-data-overview .highest-expense-overview {
+    display: none;
   }
 
   .home-data-overview {
     display: flex;
+    align-items: center;
+    flex-direction: column;
     margin-top: 3rem;
   }
 
@@ -1355,6 +1454,199 @@ option {
   .savings-card h3 {
     margin-bottom: 1rem;
   }
+
+  /* Savings */
+  .savings-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .savings-list a {
+    width: 100%;
+  }
+
+  .savings-progress {
+    width: 100%;
+    height: 163px;
+    background-color: var(--secondary-bg);
+    border-radius: 23px;
+    padding: 0.6rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    margin: 1.3rem 0.3rem;
+  }
+
+  .savings-progress-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+
+  .savings-progress-title h4 {
+    font-size: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--dark);
+  }
+
+  .savings-progress-title h3 {
+    font-size: 44px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--dark);
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--black);
+    margin-top: 0.5rem;
+  }
+
+  .savings-info-container {
+    margin-top: 2rem;
+  }
+
+  .savings-info-nav {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+
+  .savings-info-nav h4 {
+    margin: 0 1rem;
+    cursor: pointer;
+    color: var(--black);
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .savings-info-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .savings-info-progress,
+  .savings-info-history {
+    width: 100%;
+    height: 382px;
+    background-color: var(--secondary-bg);
+    margin: 0 !important;
+    border-radius: 22px;
+  }
+
+  .savings-info-payments canvas {
+    width: 100% !important;
+    height: 80% !important;
+  }
+
+  .savings-info-payments,
+  .savings-info-info {
+    width: 100%;
+    height: 482px;
+    background-color: var(--secondary-bg);
+    margin: 1.5rem 0;
+    border-radius: 22px;
+  }
+
+  .savings-info-progress,
+  .savings-info-payments,
+  .savings-info-history,
+  .savings-info-info {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 0.6rem 1rem;
+  }
+
+  .savings-info-payments h3,
+  .savings-info-info h3 {
+    font-size: 39px;
+    color: var(--dark);
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .savings-info-history h3:first-child {
+    font-size: 30px;
+    color: var(--dark);
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+
+  /* Settings */
+  .settings-items {
+    width: 100%;
+  }
+
+  .settings-user {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1700px) {
+  .logo-container p {
+    margin-top: 2rem;
+    font-size: 50px;
+    color: var(--dark);
+  }
+
+  .recent-transactions h2 {
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--dark);
+  }
+
+  .recent-transactions-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    width: 100%;
+  }
+
+  .recent-transactions-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .transactions-item {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: center;
+    color: var(--dark);
+    margin: 0.5rem 0;
+  }
+
+  .transaction-date {
+    font-size: 18px;
+  }
+
+  .transaction-name {
+    font-weight: lighter;
+    font-size: 18px;
+  }
+
+  .transaction-type {
+    font-weight: lighter;
+    font-size: 18px;
+    margin-left: 2rem;
+    text-align: center;
+  }
+
+  .transaction-price {
+    font-weight: bold;
+    color: var(--primary-bg) !important;
+    font-size: 25px !important;
+    text-align: right;
+  }
 }
 
 @media screen and (max-width: 1600px) {
@@ -1362,6 +1654,48 @@ option {
     margin-top: 2rem;
     font-size: 50px;
     color: var(--dark);
+  }
+
+  .transactions-dashboard {
+    flex-direction: column;
+  }
+
+  .transactions-dashboard .highest-expense-overview {
+    width: 100%;
+    height: 605px;
+    background-color: var(--secondary-bg);
+    border-radius: 22px;
+    padding: 1rem;
+    margin: 2rem 0 0 0 !important;
+    color: var(--primary-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .receipts-dashboard {
+    flex-direction: column;
+  }
+
+  .receipt-upload {
+    background-color: var(--secondary-bg);
+    height: 905px;
+    width: 100%;
+    border-radius: 22px;
+    padding: 1rem;
+    margin: 2rem 0 0 0 !important;
+    color: var(--primary-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .receipt-upload h3,
+  .settings-user h3 {
+    font-size: 35px;
+    font-weight: lighter;
+    text-align: center;
+    text-transform: uppercase;
   }
 }
 
