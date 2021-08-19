@@ -87,6 +87,13 @@ select {
   }
 }
 
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
 body {
   font-family: "Lato", sans-serif;
   background-color: var(--primary-bg);
@@ -103,11 +110,11 @@ a {
 }
 
 .highlight-pink {
-  color: var(--pink);
+  color: var(--pink) !important;
 }
 
 .highlight-green {
-  color: var(--green);
+  color: var(--green) !important;
 }
 
 .progress-bar {
@@ -152,7 +159,7 @@ a {
 .login-screen,
 .signup-screen {
   background-color: var(--secondary-bg);
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .login-container,
@@ -169,8 +176,14 @@ a {
   color: var(--dark);
 }
 
+.logo img {
+  width: 103px;
+  height: 66px;
+}
+
 .logo h2 {
   font-weight: bold;
+  font-size: 48px;
   margin-left: 1.5rem;
 }
 
@@ -315,7 +328,7 @@ option {
   border: none;
   outline: none;
   cursor: pointer;
-  transition: all ease-in 0.3s;
+  transition: background-color ease-in 0.3s;
   border-radius: 23px;
   font-family: "Lato", sans-serif;
   font-size: 15px;
@@ -328,7 +341,7 @@ option {
   border: none;
   outline: none;
   cursor: pointer;
-  transition: all ease-in 0.3s;
+  transition: background-color ease-in 0.3s;
   border-radius: 10px;
   font-family: "Lato", sans-serif;
   font-size: 15px;
@@ -347,7 +360,7 @@ option {
   font-weight: bold;
   font-family: "Lato", sans-serif;
   cursor: pointer;
-  transition: all ease-in 0.3s;
+  transition: background-color ease-in 0.3s;
 }
 
 .btn-large:hover {
@@ -417,6 +430,24 @@ option {
   align-items: center;
   padding: 2rem 0;
   position: relative;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+}
+
+.sidebar-logo h2 {
+  font-size: 30px;
+  margin-left: 1.5rem;
+  font-weight: bold;
+  color: var(--dark);
+}
+
+.sidebar-logo img {
+  width: 64px;
+  height: 41px;
 }
 
 .main-container {
@@ -793,7 +824,7 @@ option {
   cursor: pointer;
   color: var(--dark);
   margin: 2rem 0;
-  transition: all ease-in 0.3s;
+  transition: background-color ease-in 0.3s;
 }
 
 .settings-button h3 {
@@ -1207,4 +1238,172 @@ option {
   border: none;
   outline: none;
   border-radius: 23px;
+}
+
+@media screen and (max-width: 1600px) {
+  .logo-container p {
+    margin-top: 2rem;
+    font-size: 50px;
+    color: var(--dark);
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .login-container,
+  .signup-container {
+    display: flex;
+    width: 90%;
+    padding: 4rem 0;
+    margin: 0 auto;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .logo {
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .logo-container p {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .logo img {
+    width: 80.4px;
+    height: 50px;
+  }
+
+  .logo h2 {
+    font-size: 38px;
+  }
+
+  .login-box,
+  .signup-box {
+    width: 444px;
+  }
+
+  .login-box h1 {
+    font-size: 45px;
+  }
+
+  .signup-box h1 {
+    font-size: 45px;
+  }
+
+  .btn-large,
+  .btn-large-dark {
+    width: 330px;
+    height: 58px;
+    font-size: 16px;
+  }
+
+  .login-box-footer,
+  .signup-box-footer {
+    font-size: 16px;
+    width: 444px;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  .logo img {
+    width: 60px;
+    height: 37.5px;
+  }
+
+  .logo h2 {
+    font-size: 30px;
+  }
+
+  .login-box,
+  .signup-box {
+    width: 375px;
+  }
+
+  .signup-box {
+    height: 915px;
+  }
+
+  .login-box h1 {
+    font-size: 40px;
+  }
+
+  .signup-box h1 {
+    font-size: 40px;
+  }
+
+  .btn-large,
+  .btn-large-dark {
+    width: 275px;
+    height: 58px;
+    font-size: 16px;
+  }
+
+  .login-box-footer,
+  .signup-box-footer {
+    font-size: 16px;
+    width: 375px;
+  }
+
+  .name-input {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .auth-input input {
+    padding: 3px;
+    margin-top: 0.8rem;
+  }
+
+  .name-input .auth-input:first-child {
+    margin: 0;
+    margin-bottom: 2rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .logo img {
+    width: 60px;
+    height: 37.5px;
+  }
+
+  .logo h2 {
+    font-size: 30px;
+  }
+
+  .login-box,
+  .signup-box {
+    width: 250px;
+  }
+
+  .login-box h1 {
+    font-size: 30px;
+  }
+
+  .signup-box h1 {
+    font-size: 30px;
+  }
+
+  .btn-large,
+  .btn-large-dark {
+    width: 190px;
+    height: 48px;
+    font-size: 14px;
+  }
+
+  .login-box-footer,
+  .signup-box-footer {
+    font-size: 13px;
+    width: 250px;
+  }
 }

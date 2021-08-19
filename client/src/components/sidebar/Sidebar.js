@@ -1,5 +1,4 @@
 import React from "react";
-import Logo from "../Logo";
 import { FaSignOutAlt } from "react-icons/fa";
 import HomeIcon from "../../img/home_icon.png";
 import SavingsIcon from "../../img/savings_icon.png";
@@ -9,7 +8,7 @@ import SettingsIcon from "../../img/settings_icon.png";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../actions/userActions";
-
+import LogoImage from "../../img/logo_img.png";
 const Sidebar = () => {
   const dispatch = useDispatch();
 
@@ -19,7 +18,10 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar">
-      <Logo width={64} height={41} textSize={30} />
+      <div className="sidebar-logo">
+        <img src={LogoImage} alt={"Logo"} />
+        <h2>Money Smart</h2>
+      </div>
 
       <div className="sidebar-items">
         <Link to="/">
