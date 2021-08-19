@@ -17,7 +17,7 @@ const getUsersTransactions = asyncHandler(async (req, res) => {
     .limit(pageSize)
     .skip(pageSize * (page - 1));
 
-  const count = await Transaction.countDocuments({});
+  const count = await Transaction.countDocuments({ user: req.user._id });
 
   const allTransactions = await Transaction.find({ user: req.user._id });
 

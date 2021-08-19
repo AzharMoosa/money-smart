@@ -11,7 +11,7 @@ const getUsersReceipts = asyncHandler(async (req, res) => {
     .limit(pageSize)
     .skip(pageSize * (page - 1));
 
-  const count = await Receipt.countDocuments({});
+  const count = await Receipt.countDocuments({ user: req.user._id });
 
   if (receipts) {
     receipts.sort(function (a, b) {
