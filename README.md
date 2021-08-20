@@ -14,6 +14,10 @@ Welcome to Money Smart, a financial tracking tool to create savings, log transac
 
 <img src="screenshots/Receipts.png" />
 
+## Getting Started
+
+[Money Smart App](https://money-smart-app.herokuapp.com/)
+
 ## Key Features
 
 - Create Savings
