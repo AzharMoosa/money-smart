@@ -71,10 +71,7 @@ const RegisterScreen = ({ history }) => {
       <div className="signup-container">
         <div className="logo-container">
           <Logo />
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            suscipit leo a.
-          </p>
+          <p>The Ultimate Financial Tracking Tool. Start Saving Money Today!</p>
         </div>
 
         <div className="signup-box">
