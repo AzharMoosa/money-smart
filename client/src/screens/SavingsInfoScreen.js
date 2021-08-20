@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { SAVING_DELETE_RESET } from "../constants/savingConstants";
+import { computePercentage } from "../utils/Utils";
 
 const SavingsInfoScreen = ({ match, history }) => {
   const savingId = match.params.id;
@@ -42,13 +43,6 @@ const SavingsInfoScreen = ({ match, history }) => {
       setPages(saving.history.length / PAGE_SIZE);
     }
   }, [history, successDelete, dispatch, savingId, saving]);
-
-  const computePercentage = (amountRequired, amountSaved) => {
-    const percentage = Math.floor(
-      (amountSaved / amountRequired) * TOTAL_PERCENTAGE
-    );
-    return percentage > TOTAL_PERCENTAGE ? TOTAL_PERCENTAGE : percentage;
-  };
 
   const deleteSavingHandler = (name, id) => {
     confirmAlert({

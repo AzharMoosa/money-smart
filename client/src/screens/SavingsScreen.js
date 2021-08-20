@@ -9,6 +9,7 @@ import Message from "../components/error/Message";
 import SearchResults from "../components/error/SearchResults";
 import Loading from "../components/loading/Loading";
 import SavingsPaginate from "../components/pagination/SavingsPaginate";
+import { computePercentage } from "../utils/Utils";
 
 const SavingsScreen = ({ match, history }) => {
   const dispatch = useDispatch();
@@ -21,11 +22,6 @@ const SavingsScreen = ({ match, history }) => {
   const sort = match.params.sort || 0;
 
   const [searchTerm, setSearchTerm] = useState("");
-
-  const computePercentage = (amountRequired, amountSaved) => {
-    const percentage = Math.floor((amountSaved / amountRequired) * 100);
-    return percentage > 100 ? 100 : percentage;
-  };
 
   const searchHandler = (e) => {
     e.preventDefault();
@@ -91,7 +87,7 @@ const SavingsScreen = ({ match, history }) => {
                 />
               </Link>
             ))}
-          {savings != null && savings.length === 0 && (
+          {!loading && savings != null && savings.length === 0 && (
             <SearchResults message={"No Savings Found"} />
           )}
         </div>

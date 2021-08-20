@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Layout from "../components/layout/Layout";
 import { FaChevronRight } from "react-icons/fa";
-import DefaultUser from "../img/default_user.png";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -210,7 +209,6 @@ const SettingsScreen = ({ history }) => {
               <h3>
                 {user.firstName} {user.lastName}
               </h3>
-              <img src={DefaultUser} alt="user-img" />
               <div className="user-info">
                 <div className="age">
                   <h3>Age</h3>

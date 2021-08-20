@@ -1,12 +1,10 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
+import { computePercentage } from "../../utils/Utils";
 
 const SavingsCard = ({ saving }) => {
   const TOTAL_PERCENTAGE = 100;
-  const computePercentage = (amountRequired, amountSaved) => {
-    const percentage = Math.floor((amountSaved / amountRequired) * 100);
-    return percentage > 100 ? 100 : percentage;
-  };
+
   return (
     <div className="savings-card">
       <h3>{saving.name}</h3>
