@@ -7,12 +7,14 @@ import {
   updateUserDetails,
   getUserById,
   deleteUser,
+  loginGoogle,
 } from "../controllers/userController.js";
 import { protect } from "../middleware/authMiddleware.js";
 const router = express.Router();
 
 router.route("/").post(registerUser).put(protect, updateUserDetails);
 router.route("/login").post(loginUser);
+router.route("/auth/google").post(loginGoogle);
 router
   .route("/profile")
   .get(protect, getUserProfile)

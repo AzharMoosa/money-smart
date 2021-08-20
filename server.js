@@ -28,46 +28,10 @@ app.use("/api/transactions", transactionsRoute);
 app.use("/api/receipts", receiptsRoute);
 app.use("/api/upload", uploadRoute);
 
-// Sign In With Google
+// Sign In With Google Client ID
 app.get("/api/config/google", (req, res) =>
   res.send(process.env.GOOGLE_CLIENT_ID)
 );
-
-app.post("/auth/google", async (req, res) => {
-  const { firstName, lastName, email } = req.body;
-
-  const userExists = await User.findOne({ email });
-
-  if (userExists) {
-    res.status(201).json({
-      _id: userExists._id,
-      firstName: userExists.firstName,
-      lastName: userExists.lastName,
-      email: userExists.email,
-      token: generateToken(userExists._id),
-    });
-    return;
-  }
-
-  const user = await User.create({
-    firstName,
-    lastName,
-    email,
-  });
-
-  if (user) {
-    res.status(201).json({
-      _id: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      token: generateToken(user._id),
-    });
-  } else {
-    res.status(401);
-    throw new Error("Cannot Register User");
-  }
-});
 
 const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));

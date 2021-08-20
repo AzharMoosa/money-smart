@@ -72,7 +72,7 @@ export const loginWithGoogle =
       };
 
       const { data } = await axios.post(
-        "/auth/google",
+        "/api/users/auth/google",
         { firstName, lastName, email },
         config
       );

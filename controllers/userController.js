@@ -178,6 +178,42 @@ const deleteUser = asyncHandler(async (req, res) => {
   }
 });
 
+const loginGoogle = asyncHandler(async (req, res) => {
+  const { firstName, lastName, email } = req.body;
+
+  const userExists = await User.findOne({ email });
+
+  if (userExists) {
+    res.status(201).json({
+      _id: userExists._id,
+      firstName: userExists.firstName,
+      lastName: userExists.lastName,
+      email: userExists.email,
+      token: generateToken(userExists._id),
+    });
+    return;
+  }
+
+  const user = await User.create({
+    firstName,
+    lastName,
+    email,
+  });
+
+  if (user) {
+    res.status(201).json({
+      _id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      token: generateToken(user._id),
+    });
+  } else {
+    res.status(401);
+    throw new Error("Cannot Register User");
+  }
+});
+
 export {
   loginUser,
   registerUser,
@@ -186,4 +222,5 @@ export {
   updateUserDetails,
   getUserById,
   deleteUser,
+  loginGoogle,
 };
