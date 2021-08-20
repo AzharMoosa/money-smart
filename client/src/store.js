@@ -34,6 +34,7 @@ import {
   receiptUpdateReducer,
   userReceiptsListReducer,
 } from "./reducers/receiptReducer";
+import { reducer as burgerMenu } from "redux-burger-menu";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -59,6 +60,7 @@ const reducer = combineReducers({
   receiptDelete: receiptDeleteReducer,
   receiptUpdate: receiptUpdateReducer,
   userReceiptsList: userReceiptsListReducer,
+  burgerMenu,
 });
 
 const usersInfoFromStorage = localStorage.getItem("userInfo")
