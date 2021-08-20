@@ -45,11 +45,11 @@ const HomeScreen = () => {
 
   return (
     <Layout>
-      {loadingTransactions && <Loading />}
+      {(loadingTransactions || loadingSavings || loadingUserLogin) && (
+        <Loading />
+      )}
       {errorTransactions && <Message error={errorTransactions} />}
-      {loadingSavings && <Loading />}
       {errorSavings && <Message error={errorSavings} />}
-      {loadingUserLogin && <Loading />}
       {errorUserLogin && <Message error={errorUserLogin} />}
       {!loadingTransactions &&
         !loadingSavings &&

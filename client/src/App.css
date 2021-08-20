@@ -1819,7 +1819,7 @@ option {
     background-color: var(--secondary-bg);
     border-radius: 22px;
     padding: 1rem 4rem;
-    margin-top: 3rem;
+    margin-top: 1rem;
     color: var(--primary-bg);
   }
 
@@ -1850,6 +1850,14 @@ option {
 
   .title {
     font-size: 40px;
+  }
+
+  .savings-info-payments {
+    display: none;
+  }
+
+  .savings-info-history {
+    margin-top: 2rem !important;
   }
 }
 
@@ -1923,6 +1931,200 @@ option {
     font-size: 16px;
     width: 444px;
   }
+
+  .savings-info-info p {
+    font-size: 16px;
+  }
+
+  .savings-info-info h3 {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .savings-overview {
+    width: 336px;
+    height: 100%;
+  }
+
+  .savings-nav .btn-small-dark {
+    margin-bottom: 1rem;
+  }
+
+  .savings-nav {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0 1.5rem 0;
+    align-items: center;
+  }
+
+  .filter-icon {
+    margin-top: 1rem;
+  }
+
+  .title {
+    font-size: 35px;
+  }
+
+  .savings-progress {
+    width: 100%;
+    height: 163px;
+    background-color: var(--secondary-bg);
+    border-radius: 23px;
+    padding: 0.6rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    margin: 1.3rem 0.3rem;
+  }
+
+  .savings-progress-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+
+  .savings-progress-title h4 {
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--dark);
+  }
+
+  .savings-progress-title h3 {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--dark);
+  }
+
+  .progress-bar {
+    position: relative;
+    height: 38px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: var(--dark);
+    border: 1px solid var(--dark);
+    font-size: 13px;
+  }
+
+  .recent-transactions h2 {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--dark);
+  }
+
+  .recent-transactions-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    width: 100%;
+  }
+
+  .recent-transactions-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .transactions-item {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: center;
+    color: var(--dark);
+    margin: 0.5rem 0;
+  }
+
+  .transaction-date {
+    font-size: 15px;
+  }
+
+  .transaction-name {
+    font-weight: lighter;
+    font-size: 15px;
+  }
+
+  .transaction-type {
+    font-weight: lighter;
+    font-size: 15px;
+    margin-left: 2rem;
+    text-align: center;
+  }
+
+  .transaction-price {
+    font-weight: bold;
+    color: var(--primary-bg) !important;
+    font-size: 20px !important;
+    text-align: right;
+  }
+
+  .savings-info-title .title {
+    font-size: 30px !important;
+  }
+
+  .savings-info-nav h4 {
+    margin: 0 1rem;
+    cursor: pointer;
+    color: var(--black);
+    font-weight: bold;
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .recent-transactions h2 {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--dark);
+  }
+
+  .recent-transactions-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    width: 100%;
+  }
+
+  .recent-transactions-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .transactions-item {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: center;
+    color: var(--dark);
+    margin: 0.5rem 0;
+  }
+
+  .transaction-date {
+    font-size: 13px;
+  }
+
+  .transaction-name {
+    font-weight: lighter;
+    font-size: 13px;
+  }
+
+  .transaction-type {
+    font-weight: lighter;
+    font-size: 13px;
+    margin-left: 2rem;
+    text-align: center;
+  }
+
+  .transaction-price {
+    font-weight: bold;
+    color: var(--primary-bg) !important;
+    font-size: 17px !important;
+    text-align: right;
+  }
+
+  .highest-expense-overview {
+    display: none !important;
+  }
 }
 
 @media screen and (max-width: 530px) {
@@ -1981,9 +2183,181 @@ option {
     margin: 0;
     margin-bottom: 2rem;
   }
+
+  .recent-transactions h2 {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--dark);
+  }
+
+  .recent-transactions-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    width: 100%;
+  }
+
+  .recent-transactions-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .transactions-item {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: center;
+    color: var(--dark);
+    margin: 0.5rem 0;
+  }
+
+  .transaction-date {
+    font-size: 10px;
+  }
+
+  .transaction-name {
+    font-weight: lighter;
+    font-size: 10px;
+  }
+
+  .transaction-type {
+    font-weight: lighter;
+    font-size: 10px;
+    margin-left: 0.5rem;
+    text-align: center;
+  }
+
+  .transaction-price {
+    font-weight: bold;
+    color: var(--primary-bg) !important;
+    font-size: 13px !important;
+    text-align: right;
+  }
+
+  .upload-box {
+    margin-top: 2rem;
+  }
+
+  .upload-box p {
+    color: red;
+    text-align: center;
+  }
+
+  .upload-drop-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+    width: 213px;
+    height: 194.5px;
+    border: 3px dashed var(--dark);
+  }
+
+  .upload-drop-container h3 {
+    font-size: 20px;
+    color: var(--black);
+    margin: 1rem 0;
+    text-transform: lowercase;
+  }
+
+  .upload-icon {
+    width: 87.8px;
+    height: 61.5px;
+    background: url("./img/upload.png") no-repeat center center;
+    background-size: 100%;
+    text-align: center;
+    margin: 3rem auto;
+    padding-top: 30px;
+  }
+
+  .drop-message {
+    text-align: center;
+    color: var(--primary-bg);
+    font-size: 15px;
+  }
+
+  .btn-upload {
+    outline: none;
+    border: none;
+    width: 156px;
+    height: 36px;
+    background-color: var(--primary-bg);
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "Lato", sans-serif;
+  }
+
+  .receipt-input-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+  }
+
+  .receipt-input {
+    width: 300px;
+    height: 59px;
+    background-color: var(--primary-bg);
+    font-size: 18px;
+    font-weight: bold;
+    margin: 1rem 0;
+    border: none;
+    padding: 10px;
+    outline: none;
+  }
+
+  .savings-info-info p {
+    font-size: 14px;
+  }
+
+  .savings-info-info h3 {
+    font-size: 25px;
+  }
 }
 
 @media screen and (max-width: 425px) {
+  .savings-info-nav h4 {
+    margin: 0 1rem;
+    cursor: pointer;
+    color: var(--black);
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .savings-overview {
+    width: 280px;
+    height: 100%;
+    background-color: var(--secondary-bg);
+    border-radius: 22px;
+    padding: 1rem 4rem;
+    margin-top: 1rem;
+    color: var(--primary-bg);
+  }
+
+  .nav-logo {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    color: var(--dark);
+    margin: 0 1rem;
+  }
+
+  .nav-logo img {
+    width: 40.2px;
+    height: 25px;
+  }
+
+  .nav-logo h2 {
+    margin-left: 1rem;
+    font-size: 20px;
+  }
+
+  .search-box {
+    width: 280px;
+  }
+
   .logo img {
     width: 60px;
     height: 37.5px;
@@ -2017,5 +2391,17 @@ option {
   .signup-box-footer {
     font-size: 13px;
     width: 250px;
+  }
+
+  .savings-info-info p {
+    font-size: 12px;
+  }
+
+  .savings-info-info h3 {
+    font-size: 22px;
+  }
+
+  .savings-info-title .title {
+    font-size: 25px !important;
   }
 }
