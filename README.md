@@ -1,10 +1,10 @@
 # Money Smart
 
-The ultimate financial tracking tool created using the React, Redux, NodeJS and ChartsJS.
+The ultimate financial tracking tool created using the React, Redux, Node.js and Chart.js.
 
 ## Description
 
-Welcome to Money Smart, a financial tracking tool to create savings, log transactions and store receipts. Saving up for a new product? Why not create a savings with the amount required. Continuously add money to the saving and track your progress of saving up. Track all your transactions, view your highest expenses using the pie chart and monthly spending using the line graphs. Money Smart implements TesseractJS to scan your receipts and extract the name and total amount from the receipt. Then you can store your receipts to view later and keep a track of your receipts. Using ChartsJS allows you to view all your financial information through the various, pie charts, line graphs and bar charts.
+Welcome to Money Smart, a financial tracking tool to create savings, log transactions and store receipts. Saving up for a new product? Why not create a savings with the amount required. Continuously add money to the saving and track your progress of saving up. Track all your transactions, view your highest expenses using the pie chart and monthly spending using the line graphs. Money Smart implements Tesseract.js to scan your receipts and extract the name and total amount from the receipt. Then you can store your receipts to view later and keep a track of your receipts. Using Chart.js allows you to view all your financial information through the various, pie charts, line graphs and bar charts.
 
 ## Screenshots
 
@@ -28,7 +28,7 @@ Welcome to Money Smart, a financial tracking tool to create savings, log transac
   - View Highest Expenses Using Pie Chart
   - View Monthly Spending Using Line Chart
 - Store Receipts
-  - TesseractJS Extracts Receipt Information
+  - Tesseract.js Extracts Receipt Information
   - Keep Track Of Previous Receipts
 
 ## Help
